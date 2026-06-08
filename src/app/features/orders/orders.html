@@ -1,0 +1,30 @@
+<section class="page-title">
+  <p class="eyebrow">Orders</p>
+  <h1>Your order history</h1>
+  <p>Track recent fashion orders and their current status.</p>
+</section>
+
+<section class="section">
+  <div class="table-card">
+    <table>
+      <thead>
+        <tr>
+          <th>Order</th>
+          <th>Date</th>
+          <th>Status</th>
+          <th>Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (order of shop.recentOrders; track order.id) {
+          <tr>
+            <td>{{ order.id }}</td>
+            <td>{{ order.date }}</td>
+            <td><span class="status-pill">{{ order.status }}</span></td>
+            <td>{{ order.total | currency: 'INR' : 'symbol' : '1.0-0' }}</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</section>

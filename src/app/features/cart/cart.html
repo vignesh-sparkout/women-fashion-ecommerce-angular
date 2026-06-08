@@ -1,0 +1,58 @@
+<section class="page-title">
+  <p class="eyebrow">Cart</p>
+  <h1>Your shopping cart</h1>
+  <p>Review products, update quantities, remove items, and continue to checkout.</p>
+</section>
+
+@if (shop.cart().length) {
+  <section class="checkout-layout">
+    <div class="cart-list">
+      @for (item of shop.cart(); track item.product.id + item.size + item.color) {
+        <article class="cart-item">
+          <img [src]="item.product.image" [alt]="item.product.name" />
+          <div>
+            <h2>{{ item.product.name }}</h2>
+            <p>{{ item.size }} · {{ item.color }}</p>
+            <strong>{{ item.product.discountPrice | currency: 'INR' : 'symbol' : '1.0-0' }}</strong>
+          </div>
+          <label>
+            Qty
+            <input
+              type="number"
+              min="1"
+              [value]="item.quantity"
+              (input)="updateQuantity(item.product.id, item.size, item.color, $any($event.target).value)"
+            />
+          </label>
+          <button type="button" class="button secondary" (click)="remove(item.product.id, item.size, item.color)">
+            Remove
+          </button>
+        </article>
+      }
+    </div>
+
+    <aside class="summary-panel">
+      <h2>Order Summary</h2>
+      <div class="summary-row">
+        <span>Subtotal</span>
+        <strong>{{ shop.cartTotal() | currency: 'INR' : 'symbol' : '1.0-0' }}</strong>
+      </div>
+      <div class="summary-row">
+        <span>Delivery</span>
+        <strong>{{ deliveryFee() | currency: 'INR' : 'symbol' : '1.0-0' }}</strong>
+      </div>
+      <div class="summary-row total">
+        <span>Total</span>
+        <strong>{{ grandTotal() | currency: 'INR' : 'symbol' : '1.0-0' }}</strong>
+      </div>
+      <p class="coupon-note">Use GLAM10 during checkout for an extra discount.</p>
+      <a routerLink="/checkout" class="button primary full">Checkout</a>
+    </aside>
+  </section>
+} @else {
+  <section class="empty-state">
+    <h2>Your cart is empty</h2>
+    <p>Add products from the listing page to build an order.</p>
+    <a routerLink="/products" class="button primary">Shop Products</a>
+  </section>
+}

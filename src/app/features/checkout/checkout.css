@@ -1,0 +1,45 @@
+@import "../../shared/styles/common.css";
+
+.checkout-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 340px;
+  gap: 28px;
+  align-items: start;
+}
+
+.checkout-form {
+  display: grid;
+  gap: 18px;
+}
+
+.radio-row {
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.radio-row label {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.radio-row input {
+  width: auto;
+  min-height: auto;
+}
+
+.summary-panel {
+  position: sticky;
+  top: 86px;
+}
+
+@media (max-width: 980px) {
+  .checkout-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .summary-panel {
+    position: static;
+  }
+}

@@ -1,0 +1,106 @@
+@import "../../shared/styles/common.css";
+
+.hero {
+  min-height: clamp(480px, 78vh, 720px);
+  display: flex;
+  align-items: center;
+  padding: clamp(48px, 8vw, 110px) clamp(18px, 6vw, 92px);
+  background-position: center;
+  background-size: cover;
+  color: #ffffff;
+}
+
+.hero-content {
+  width: min(680px, 100%);
+}
+
+.hero h1 {
+  margin: 8px 0 16px;
+  font-size: clamp(2.4rem, 5vw, 5.25rem);
+  line-height: 1.02;
+}
+
+.hero p {
+  max-width: 620px;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1.1rem;
+  line-height: 1.7;
+}
+
+.hero .eyebrow {
+  color: #b7f5ef;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 26px;
+}
+
+.split-section {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 22px;
+}
+
+.offer-panel,
+.reviews article {
+  padding: 28px;
+}
+
+.offer-panel {
+  background: #fff7ed;
+}
+
+.reviews {
+  display: grid;
+  gap: 16px;
+}
+
+.reviews strong {
+  color: var(--gold);
+  font-size: 1.2rem;
+}
+
+.reviews span {
+  color: var(--muted);
+  font-weight: 800;
+}
+
+.newsletter-section {
+  display: grid;
+  grid-template-columns: 1fr minmax(280px, 440px);
+  gap: 28px;
+  align-items: center;
+  margin-top: 58px;
+  padding: 30px;
+  border-radius: 8px;
+  background: #e9f8f6;
+}
+
+.newsletter-section h2 {
+  margin: 6px 0 0;
+}
+
+.newsletter-form {
+  display: grid;
+  gap: 12px;
+}
+
+@media (max-width: 980px) {
+  .split-section,
+  .newsletter-section {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero {
+    min-height: 560px;
+  }
+
+  .hero h1 {
+    font-size: 2.35rem;
+  }
+}

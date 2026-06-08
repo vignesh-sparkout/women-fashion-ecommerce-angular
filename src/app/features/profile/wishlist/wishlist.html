@@ -1,0 +1,35 @@
+<section class="page-title">
+  <p class="eyebrow">Wishlist</p>
+  <h1>Saved styles</h1>
+  <p>Keep favorite products ready for the next order.</p>
+</section>
+
+<section class="section">
+  <div class="product-grid">
+    @for (product of shop.wishlist(); track product.id) {
+      <article class="product-card">
+        <a [routerLink]="['/products', product.id]" class="product-image">
+          <img [src]="product.image" [alt]="product.name" />
+        </a>
+        <div class="product-info">
+          <p>{{ product.category }}</p>
+          <h2>{{ product.name }}</h2>
+          <div class="price-row">
+            <strong>{{ product.discountPrice | currency: 'INR' : 'symbol' : '1.0-0' }}</strong>
+            <span>{{ product.price | currency: 'INR' : 'symbol' : '1.0-0' }}</span>
+          </div>
+          <div class="card-actions">
+            <a [routerLink]="['/products', product.id]" class="button primary">View</a>
+            <button type="button" class="button secondary" (click)="remove(product.id)">Remove</button>
+          </div>
+        </div>
+      </article>
+    } @empty {
+      <div class="empty-state">
+        <h2>No saved products yet</h2>
+        <p>Save products from the listing page to see them here.</p>
+        <a routerLink="/products" class="button primary">Shop Products</a>
+      </div>
+    }
+  </div>
+</section>

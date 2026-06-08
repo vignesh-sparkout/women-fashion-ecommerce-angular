@@ -1,0 +1,66 @@
+<section class="page-title">
+  <p class="eyebrow">Admin Dashboard</p>
+  <h1>Store overview</h1>
+  <p>A quick view of orders, revenue, products, and recent customer activity.</p>
+</section>
+
+<section class="stats-grid">
+  <article class="stat-card">
+    <span>Total Orders</span>
+    <strong>{{ totalOrders }}</strong>
+  </article>
+  <article class="stat-card">
+    <span>Total Revenue</span>
+    <strong>{{ totalRevenue | currency: 'INR' : 'symbol' : '1.0-0' }}</strong>
+  </article>
+  <article class="stat-card">
+    <span>Total Products</span>
+    <strong>{{ totalProducts }}</strong>
+  </article>
+  <article class="stat-card">
+    <span>Cart Items</span>
+    <strong>{{ shop.cartCount() }}</strong>
+  </article>
+</section>
+
+<section class="section">
+  <div class="admin-links">
+    <a routerLink="/admin/categories" class="button secondary">Categories</a>
+    <a routerLink="/admin/products" class="button secondary">Products</a>
+    <a routerLink="/admin/orders" class="button secondary">Orders</a>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-heading">
+    <div>
+      <p class="eyebrow">Recent orders</p>
+      <h2>Latest customer orders</h2>
+    </div>
+  </div>
+
+  <div class="table-card">
+    <table>
+      <thead>
+        <tr>
+          <th>Order ID</th>
+          <th>Customer</th>
+          <th>Date</th>
+          <th>Status</th>
+          <th>Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (order of shop.recentOrders; track order.id) {
+          <tr>
+            <td>{{ order.id }}</td>
+            <td>{{ order.customer }}</td>
+            <td>{{ order.date }}</td>
+            <td><span class="status-pill">{{ order.status }}</span></td>
+            <td>{{ order.total | currency: 'INR' : 'symbol' : '1.0-0' }}</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</section>

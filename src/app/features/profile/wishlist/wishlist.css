@@ -1,0 +1,5 @@
+@import "../../../shared/styles/common.css";
+
+.empty-state {
+  grid-column: 1 / -1;
+}

@@ -1,0 +1,74 @@
+<section class="details-layout">
+  <div class="details-image">
+    <img [src]="product.image" [alt]="product.name" />
+  </div>
+
+  <div class="details-info">
+    <p class="eyebrow">{{ product.category }} · {{ product.subCategory }}</p>
+    <h1>{{ product.name }}</h1>
+    <div class="price-row large">
+      <strong>{{ product.discountPrice | currency: 'INR' : 'symbol' : '1.0-0' }}</strong>
+      <span>{{ product.price | currency: 'INR' : 'symbol' : '1.0-0' }}</span>
+    </div>
+    <p>{{ product.description }}</p>
+    <p class="stock-text">{{ product.stock }} items available · {{ product.rating }} star rating</p>
+
+    <form [formGroup]="purchaseForm" (ngSubmit)="addToCart()" class="purchase-form">
+      <label>
+        Size
+        <select formControlName="size">
+          @for (size of product.sizes; track size) {
+            <option [value]="size">{{ size }}</option>
+          }
+        </select>
+      </label>
+
+      <label>
+        Color
+        <select formControlName="color">
+          @for (color of product.colors; track color) {
+            <option [value]="color">{{ color }}</option>
+          }
+        </select>
+      </label>
+
+      <label>
+        Quantity
+        <input type="number" min="1" max="10" formControlName="quantity" />
+      </label>
+
+      <div class="form-actions">
+        <button type="submit" class="button primary">Add to Cart</button>
+        <button type="button" class="button secondary" (click)="buyNow()">Buy Now</button>
+      </div>
+
+      @if (addedToCart) {
+        <p class="success-text">Added to cart.</p>
+      }
+    </form>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-heading">
+    <div>
+      <p class="eyebrow">Related products</p>
+      <h2>Complete the look</h2>
+    </div>
+  </div>
+
+  <div class="product-grid">
+    @for (related of relatedProducts; track related.id) {
+      <article class="product-card">
+        <a [routerLink]="['/products', related.id]" class="product-image">
+          <img [src]="related.image" [alt]="related.name" />
+        </a>
+        <div class="product-info">
+          <p>{{ related.subCategory }}</p>
+          <h3>{{ related.name }}</h3>
+          <strong>{{ related.discountPrice | currency: 'INR' : 'symbol' : '1.0-0' }}</strong>
+        </div>
+      </article>
+    }
+  </div>
+</section>

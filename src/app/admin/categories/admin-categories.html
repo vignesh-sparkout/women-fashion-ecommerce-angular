@@ -1,0 +1,21 @@
+<section class="page-title">
+  <p class="eyebrow">Admin</p>
+  <h1>Manage categories</h1>
+  <p>Review the storefront category groups and sub-categories.</p>
+</section>
+
+<section class="section">
+  <div class="category-grid large">
+    @for (category of shop.categoryGroups; track category.name) {
+      <article class="form-section">
+        <h2>{{ category.name }}</h2>
+        <p>{{ category.description }}</p>
+        <div class="pill-list">
+          @for (child of category.children; track child) {
+            <span>{{ child }}</span>
+          }
+        </div>
+      </article>
+    }
+  </div>
+</section>

@@ -1,0 +1,32 @@
+<section class="page-title">
+  <p class="eyebrow">Admin</p>
+  <h1>Manage products</h1>
+  <p>Check product pricing, stock, category, and best seller status.</p>
+</section>
+
+<section class="section">
+  <div class="table-card">
+    <table>
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Category</th>
+          <th>Price</th>
+          <th>Stock</th>
+          <th>Sold</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (product of shop.products; track product.id) {
+          <tr>
+            <td>{{ product.name }}</td>
+            <td>{{ product.category }}</td>
+            <td>{{ product.discountPrice | currency: 'INR' : 'symbol' : '1.0-0' }}</td>
+            <td>{{ product.stock }}</td>
+            <td>{{ product.sold }}</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</section>

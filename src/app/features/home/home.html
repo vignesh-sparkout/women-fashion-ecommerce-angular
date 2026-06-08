@@ -1,0 +1,132 @@
+<section class="hero" [style.background-image]="heroImage">
+  <div class="hero-content">
+    <p class="eyebrow">New season edit</p>
+    <h1>Women's Clothing E-Commerce</h1>
+    <p>
+      Shop ethnic wear, western wear, party styles, active wear, night wear, and accessories from one elegant store.
+    </p>
+    <div class="hero-actions">
+      <a routerLink="/products" class="button primary">Shop Products</a>
+      <a routerLink="/categories" class="button secondary">View Categories</a>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-heading">
+    <div>
+      <p class="eyebrow">New arrivals</p>
+      <h2>Fresh pieces just landed</h2>
+    </div>
+    <a routerLink="/products">See all</a>
+  </div>
+
+  <div class="product-grid">
+    @for (product of newArrivals(); track product.id) {
+      <article class="product-card">
+        <a [routerLink]="['/products', product.id]" class="product-image">
+          <img [src]="product.image" [alt]="product.name" />
+        </a>
+        <div class="product-info">
+          <p>{{ product.category }}</p>
+          <h3>{{ product.name }}</h3>
+          <div class="price-row">
+            <strong>{{ product.discountPrice | currency: 'INR' : 'symbol' : '1.0-0' }}</strong>
+            <span>{{ product.price | currency: 'INR' : 'symbol' : '1.0-0' }}</span>
+          </div>
+        </div>
+      </article>
+    }
+  </div>
+</section>
+
+<section class="section muted">
+  <div class="section-heading">
+    <div>
+      <p class="eyebrow">Shop by category</p>
+      <h2>Collections for every plan</h2>
+    </div>
+  </div>
+
+  <div class="category-grid">
+    @for (category of shop.categoryGroups; track category.name) {
+      <a routerLink="/products" [queryParams]="{ category: category.name }" class="category-card">
+        <img [src]="category.image" [alt]="category.name" />
+        <div>
+          <h3>{{ category.name }}</h3>
+          <p>{{ category.description }}</p>
+        </div>
+      </a>
+    }
+  </div>
+</section>
+
+<section class="section">
+  <div class="section-heading">
+    <div>
+      <p class="eyebrow">Best sellers</p>
+      <h2>Popular this week</h2>
+    </div>
+  </div>
+
+  <div class="product-grid">
+    @for (product of bestSellers(); track product.id) {
+      <article class="product-card">
+        <a [routerLink]="['/products', product.id]" class="product-image">
+          <img [src]="product.image" [alt]="product.name" />
+        </a>
+        <div class="product-info">
+          <p>{{ product.subCategory }} · {{ product.rating }} stars</p>
+          <h3>{{ product.name }}</h3>
+          <div class="price-row">
+            <strong>{{ product.discountPrice | currency: 'INR' : 'symbol' : '1.0-0' }}</strong>
+            <span>{{ product.price | currency: 'INR' : 'symbol' : '1.0-0' }}</span>
+          </div>
+        </div>
+      </article>
+    }
+  </div>
+</section>
+
+<section class="section split-section">
+  <div class="offer-panel">
+    <p class="eyebrow">Seasonal offers</p>
+    <h2>Use GLAM10 for 10% off checkout orders.</h2>
+    <p>Offer applies automatically when the coupon code is entered on the checkout page.</p>
+    <a routerLink="/checkout" class="button primary">Go to Checkout</a>
+  </div>
+
+  <div class="reviews">
+    <article>
+      <strong>4.8/5</strong>
+      <p>"The category flow is easy and the product details are very clear."</p>
+      <span>Priya S.</span>
+    </article>
+    <article>
+      <strong>Fast delivery</strong>
+      <p>"The saree and office shirt arrived packed beautifully."</p>
+      <span>Anika M.</span>
+    </article>
+  </div>
+</section>
+
+<section class="newsletter-section">
+  <div>
+    <p class="eyebrow">Newsletter</p>
+    <h2>Get new arrivals in your inbox</h2>
+  </div>
+
+  <form [formGroup]="newsletterForm" (ngSubmit)="joinNewsletter()" class="newsletter-form">
+    <label>
+      Email address
+      <input type="email" formControlName="email" placeholder="you@example.com" />
+    </label>
+    <button type="submit" class="button primary">Join</button>
+    @if (newsletterForm.controls.email.touched && newsletterForm.controls.email.invalid) {
+      <p class="field-error">Enter a valid email address.</p>
+    }
+    @if (subscribed) {
+      <p class="success-text">You are on the list.</p>
+    }
+  </form>
+</section>

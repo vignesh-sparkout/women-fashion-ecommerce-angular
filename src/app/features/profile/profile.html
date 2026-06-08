@@ -1,0 +1,100 @@
+<section class="page-title">
+  <p class="eyebrow">My Account</p>
+  <h1>Profile, orders, wishlist, and addresses</h1>
+  <p>Keep profile details and saved addresses ready for faster checkout.</p>
+</section>
+
+<section class="account-layout">
+  <form [formGroup]="profileForm" (ngSubmit)="saveProfile()" class="form-section">
+    <h2>Profile</h2>
+    <div class="form-grid">
+      <label>
+        First name
+        <input type="text" formControlName="firstName" />
+      </label>
+      <label>
+        Last name
+        <input type="text" formControlName="lastName" />
+      </label>
+      <label>
+        Email
+        <input type="email" formControlName="email" />
+      </label>
+      <label>
+        Phone
+        <input type="tel" formControlName="phone" />
+      </label>
+    </div>
+    <button type="submit" class="button primary">Save Profile</button>
+    @if (profileSaved) {
+      <p class="success-text">Profile saved.</p>
+    }
+  </form>
+
+  <form [formGroup]="addressForm" (ngSubmit)="saveAddress()" class="form-section">
+    <h2>Addresses</h2>
+    <div class="form-grid">
+      <label class="wide">
+        Address
+        <textarea rows="3" formControlName="address"></textarea>
+      </label>
+      <label>
+        City
+        <input type="text" formControlName="city" />
+      </label>
+      <label>
+        State
+        <input type="text" formControlName="state" />
+      </label>
+      <label>
+        Pin code
+        <input type="text" formControlName="pinCode" />
+      </label>
+    </div>
+    <button type="submit" class="button primary">Save Address</button>
+    @if (addressSaved) {
+      <p class="success-text">Address saved.</p>
+    }
+  </form>
+</section>
+
+<section class="section">
+  <div class="section-heading">
+    <div>
+      <p class="eyebrow">Orders</p>
+      <h2>Recent orders</h2>
+    </div>
+  </div>
+  <div class="table-card">
+    <table>
+      <thead>
+        <tr>
+          <th>Order</th>
+          <th>Date</th>
+          <th>Status</th>
+          <th>Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (order of shop.recentOrders.slice(0, 3); track order.id) {
+          <tr>
+            <td>{{ order.id }}</td>
+            <td>{{ order.date }}</td>
+            <td><span class="status-pill">{{ order.status }}</span></td>
+            <td>{{ order.total | currency: 'INR' : 'symbol' : '1.0-0' }}</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="section muted">
+  <div class="section-heading">
+    <div>
+      <p class="eyebrow">Wishlist</p>
+      <h2>{{ shop.wishlistCount() }} saved products</h2>
+    </div>
+    <a routerLink="/wishlist">Open wishlist</a>
+  </div>
+</section>

@@ -1,0 +1,6 @@
+@import "../../shared/styles/common.css";
+
+.form-section {
+  display: grid;
+  gap: 14px;
+}

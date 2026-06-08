@@ -1,0 +1,27 @@
+<section class="page-title">
+  <p class="eyebrow">Categories</p>
+  <h1>Browse women's fashion by collection</h1>
+  <p>Move through festive outfits, daily wear, party pieces, active sets, sleepwear, and finishing accessories.</p>
+</section>
+
+<section class="section">
+  <div class="category-grid large">
+    @for (category of shop.categoryGroups; track category.name) {
+      <article class="category-detail">
+        <img [src]="category.image" [alt]="category.name" />
+        <div>
+          <h2>{{ category.name }}</h2>
+          <p>{{ category.description }}</p>
+          <div class="pill-list">
+            @for (child of category.children; track child) {
+              <span>{{ child }}</span>
+            }
+          </div>
+          <a routerLink="/products" [queryParams]="{ category: category.name }" class="text-link">
+            Shop {{ category.name }}
+          </a>
+        </div>
+      </article>
+    }
+  </div>
+</section>

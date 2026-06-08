@@ -1,0 +1,27 @@
+<header class="site-header">
+  <a routerLink="/" class="brand" aria-label="GlamCart home">
+    <span class="brand-mark">G</span>
+    <span>GlamCart</span>
+  </a>
+
+  <nav class="primary-nav" aria-label="Primary navigation">
+    <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a>
+    <a routerLink="/categories" routerLinkActive="active">Categories</a>
+    <a routerLink="/products" routerLinkActive="active">Products</a>
+    <a routerLink="/orders" routerLinkActive="active">Orders</a>
+    <a routerLink="/profile" routerLinkActive="active">Profile</a>
+    <a routerLink="/auth" routerLinkActive="active">Sign In</a>
+    <a routerLink="/admin/dashboard" routerLinkActive="active">Admin</a>
+  </nav>
+
+  <div class="header-actions">
+    <a routerLink="/wishlist" class="icon-link" aria-label="Wishlist">
+      Wishlist
+      <span>{{ shop.wishlistCount() }}</span>
+    </a>
+    <a routerLink="/cart" class="icon-link" aria-label="Cart">
+      Cart
+      <span>{{ shop.cartCount() }}</span>
+    </a>
+  </div>
+</header>

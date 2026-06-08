@@ -1,0 +1,101 @@
+<section class="page-title">
+  <p class="eyebrow">Products</p>
+  <h1>Find your next look</h1>
+  <p>Explore fresh arrivals, best sellers, and special prices across every collection.</p>
+</section>
+
+<section class="catalog-layout">
+  <aside class="filter-panel">
+    <form [formGroup]="filters">
+      <label>
+        Search
+        <input type="search" formControlName="search" placeholder="Search dresses, sarees..." />
+      </label>
+
+      <label>
+        Category
+        <select formControlName="category">
+          @for (category of categories; track category) {
+            <option [value]="category">{{ category }}</option>
+          }
+        </select>
+      </label>
+
+      <label>
+        Max price: {{ filters.controls.maxPrice.value | currency: 'INR' : 'symbol' : '1.0-0' }}
+        <input type="range" min="500" max="10000" step="250" formControlName="maxPrice" />
+      </label>
+
+      <label>
+        Size
+        <select formControlName="size">
+          @for (size of sizes; track size) {
+            <option [value]="size">{{ size }}</option>
+          }
+        </select>
+      </label>
+
+      <label>
+        Color
+        <select formControlName="color">
+          @for (color of colors; track color) {
+            <option [value]="color">{{ color }}</option>
+          }
+        </select>
+      </label>
+
+      <label>
+        Sort by
+        <select formControlName="sort">
+          @for (option of sortOptions; track option) {
+            <option [value]="option">{{ option }}</option>
+          }
+        </select>
+      </label>
+
+      <button type="button" class="button secondary full" (click)="resetFilters()">Reset Filters</button>
+    </form>
+  </aside>
+
+  <div class="catalog-content">
+    <div class="result-bar">
+      <strong>{{ filteredProducts().length }} products</strong>
+      <span>Showing current filtered results</span>
+    </div>
+
+    <div class="product-grid">
+      @for (product of filteredProducts(); track product.id) {
+        <article class="product-card">
+          <a [routerLink]="['/products', product.id]" class="product-image">
+            <img [src]="product.image" [alt]="product.name" />
+          </a>
+          <div class="product-info">
+            <div class="badge-row">
+              @for (badge of product.badges; track badge) {
+                <span>{{ badge }}</span>
+              }
+            </div>
+            <p>{{ product.category }} · {{ product.subCategory }}</p>
+            <h2>{{ product.name }}</h2>
+            <div class="price-row">
+              <strong>{{ product.discountPrice | currency: 'INR' : 'symbol' : '1.0-0' }}</strong>
+              <span>{{ product.price | currency: 'INR' : 'symbol' : '1.0-0' }}</span>
+            </div>
+            <div class="card-actions">
+              <a [routerLink]="['/products', product.id]" class="button primary">View</a>
+              <button type="button" class="button secondary" (click)="toggleWishlist(product.id)">
+                {{ shop.isWishlisted(product.id) ? 'Saved' : 'Wishlist' }}
+              </button>
+            </div>
+          </div>
+        </article>
+      } @empty {
+        <div class="empty-state">
+          <h2>No products found</h2>
+          <p>Try removing a filter or increasing the max price.</p>
+          <button type="button" class="button primary" (click)="resetFilters()">Clear Filters</button>
+        </div>
+      }
+    </div>
+  </div>
+</section>
