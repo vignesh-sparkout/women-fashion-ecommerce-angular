@@ -61,8 +61,17 @@ a {
 }
 
 .primary-nav a.active,
-.primary-nav a:hover {
+.primary-nav a:hover,
+.nav-button:hover {
   color: var(--rose-dark);
+}
+
+.nav-button {
+  border: 0;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  font-weight: 700;
 }
 
 .header-actions {

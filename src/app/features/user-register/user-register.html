@@ -1,0 +1,87 @@
+<section class="auth-shell">
+  <form [formGroup]="registerForm" (ngSubmit)="createAccount()" class="auth-card" novalidate>
+    <div class="auth-topbar">
+      <div class="auth-brand">
+        <span class="brand-mark">G</span>
+        <span>GlamCart</span>
+      </div>
+    </div>
+
+    <div class="auth-heading">
+      <h1>Create account</h1>
+    </div>
+
+    <div class="register-fields">
+      <div class="field-group">
+        <label for="fullName">Full name</label>
+        <input
+          id="fullName"
+          type="text"
+          formControlName="fullName"
+          autocomplete="name"
+          placeholder="Your full name"
+          [class.invalid]="fullNameInvalid()"
+        />
+        @if (fullNameError(); as error) {
+          <p class="field-error">{{ error }}</p>
+        }
+      </div>
+
+      <div class="field-group">
+        <label for="registerEmail">Email address</label>
+        <input
+          id="registerEmail"
+          type="email"
+          formControlName="email"
+          autocomplete="email"
+          placeholder="name@example.com"
+          [class.invalid]="emailInvalid()"
+        />
+        @if (emailError(); as error) {
+          <p class="field-error">{{ error }}</p>
+        }
+      </div>
+
+      <div class="field-group">
+        <label for="registerPassword">Password</label>
+        <input
+          id="registerPassword"
+          type="password"
+          formControlName="password"
+          autocomplete="new-password"
+          placeholder="Minimum 6 characters"
+          [class.invalid]="passwordInvalid()"
+        />
+        @if (passwordError(); as error) {
+          <p class="field-error">{{ error }}</p>
+        }
+      </div>
+
+      <div class="field-group wide">
+        <label for="confirmPassword">Confirm password</label>
+        <input
+          id="confirmPassword"
+          type="password"
+          formControlName="confirmPassword"
+          autocomplete="new-password"
+          placeholder="Repeat password"
+          [class.invalid]="confirmPasswordInvalid()"
+        />
+        @if (confirmPasswordError(); as error) {
+          <p class="field-error">{{ error }}</p>
+        }
+      </div>
+    </div>
+
+    @if (message) {
+      <p class="field-error form-message">{{ message }}</p>
+    }
+
+    <button type="submit" class="button primary auth-submit">Create account</button>
+
+    <p class="auth-switch">
+      <span>Already registered?</span>
+      <a routerLink="/auth" [queryParams]="{ returnUrl: returnUrl }">Sign in</a>
+    </p>
+  </form>
+</section>

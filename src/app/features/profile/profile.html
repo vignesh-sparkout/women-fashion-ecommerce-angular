@@ -1,33 +1,37 @@
 <section class="page-title">
   <p class="eyebrow">My Account</p>
-  <h1>Profile, orders, wishlist, and addresses</h1>
-  <p>Keep profile details and saved addresses ready for faster checkout.</p>
+  <h1>Profile and addresses</h1>
+  <p>Manage the customer details used for checkout and order updates.</p>
 </section>
 
 <section class="account-layout">
   <form [formGroup]="profileForm" (ngSubmit)="saveProfile()" class="form-section">
     <h2>Profile</h2>
+    @if (auth.currentUser(); as user) {
+      <p class="account-note">Signed in as {{ user.email }}</p>
+    }
+
     <div class="form-grid">
-      <label>
-        First name
-        <input type="text" formControlName="firstName" />
+      <label class="wide">
+        Full name
+        <input type="text" formControlName="fullName" [class.invalid]="fullNameInvalid()" />
       </label>
-      <label>
-        Last name
-        <input type="text" formControlName="lastName" />
-      </label>
-      <label>
+      @if (fullNameError(); as error) {
+        <p class="field-error wide">{{ error }}</p>
+      }
+
+      <label class="wide">
         Email
-        <input type="email" formControlName="email" />
+        <input type="email" formControlName="email" [class.invalid]="emailInvalid()" />
       </label>
-      <label>
-        Phone
-        <input type="tel" formControlName="phone" />
-      </label>
+      @if (emailError(); as error) {
+        <p class="field-error wide">{{ error }}</p>
+      }
     </div>
+
     <button type="submit" class="button primary">Save Profile</button>
-    @if (profileSaved) {
-      <p class="success-text">Profile saved.</p>
+    @if (profileMessage) {
+      <p [class.success-text]="profileSaved" [class.field-error]="!profileSaved">{{ profileMessage }}</p>
     }
   </form>
 

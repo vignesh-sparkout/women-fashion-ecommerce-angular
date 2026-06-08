@@ -1,0 +1,60 @@
+<section class="auth-shell">
+  <form [formGroup]="loginForm" (ngSubmit)="signIn()" class="auth-card" novalidate>
+    <div class="auth-topbar">
+      <div class="auth-brand">
+        <span class="brand-mark">G</span>
+        <span>GlamCart</span>
+      </div>
+    </div>
+
+    <div class="auth-heading">
+      <h1>Sign in</h1>
+      <p>Use your email and password to continue.</p>
+    </div>
+
+    @if (registrationDone) {
+      <p class="success-text">Account created. Please sign in to continue.</p>
+    }
+
+    <div class="field-group">
+      <label for="loginEmail">Email address</label>
+      <input
+        id="loginEmail"
+        type="email"
+        formControlName="email"
+        autocomplete="email"
+        placeholder="name@example.com"
+        [class.invalid]="emailInvalid()"
+      />
+      @if (emailError(); as error) {
+        <p class="field-error">{{ error }}</p>
+      }
+    </div>
+
+    <div class="field-group">
+      <label for="loginPassword">Password</label>
+      <input
+        id="loginPassword"
+        type="password"
+        formControlName="password"
+        autocomplete="current-password"
+        placeholder="Enter password"
+        [class.invalid]="passwordInvalid()"
+      />
+      @if (passwordError(); as error) {
+        <p class="field-error">{{ error }}</p>
+      }
+    </div>
+
+    @if (loginMessage) {
+      <p class="field-error form-message">{{ loginMessage }}</p>
+    }
+
+    <button type="submit" class="button primary auth-submit">Sign in</button>
+
+    <p class="auth-switch">
+      <span>Not registered?</span>
+      <a routerLink="/register" [queryParams]="{ returnUrl: returnUrl }">Register here</a>
+    </p>
+  </form>
+</section>

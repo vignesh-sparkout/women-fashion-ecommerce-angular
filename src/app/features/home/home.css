@@ -68,29 +68,8 @@
   font-weight: 800;
 }
 
-.newsletter-section {
-  display: grid;
-  grid-template-columns: 1fr minmax(280px, 440px);
-  gap: 28px;
-  align-items: center;
-  margin-top: 58px;
-  padding: 30px;
-  border-radius: 8px;
-  background: #e9f8f6;
-}
-
-.newsletter-section h2 {
-  margin: 6px 0 0;
-}
-
-.newsletter-form {
-  display: grid;
-  gap: 12px;
-}
-
 @media (max-width: 980px) {
-  .split-section,
-  .newsletter-section {
+  .split-section {
     grid-template-columns: 1fr;
   }
 }

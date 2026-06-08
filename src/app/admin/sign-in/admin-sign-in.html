@@ -1,0 +1,40 @@
+<section class="admin-sign-in-page">
+  <form [formGroup]="adminForm" (ngSubmit)="signIn()" class="admin-card">
+    <div>
+      <p class="eyebrow">Admin Panel</p>
+      <h1>Admin Sign In</h1>
+      <p>Only the store admin can open dashboard, products, categories, and orders.</p>
+    </div>
+
+    <label>
+      Admin email
+      <input type="email" formControlName="email" placeholder="admin@gmail.com" />
+    </label>
+    @if (submitted && adminForm.controls.email.hasError('required')) {
+      <p class="field-error">Email is required.</p>
+    }
+    @if (submitted && adminForm.controls.email.hasError('email')) {
+      <p class="field-error">Enter a valid email address.</p>
+    }
+    @if (submitted && adminForm.controls.email.hasError('minlength')) {
+      <p class="field-error">Email must be at least 5 characters.</p>
+    }
+
+    <label>
+      Password
+      <input type="password" formControlName="password" placeholder="Enter password" />
+    </label>
+    @if (submitted && adminForm.controls.password.hasError('required')) {
+      <p class="field-error">Password is required.</p>
+    }
+    @if (submitted && adminForm.controls.password.hasError('minlength')) {
+      <p class="field-error">Password must be at least 6 characters.</p>
+    }
+
+    @if (message) {
+      <p class="field-error">{{ message }}</p>
+    }
+
+    <button type="submit" class="button primary">Open Admin Panel</button>
+  </form>
+</section>

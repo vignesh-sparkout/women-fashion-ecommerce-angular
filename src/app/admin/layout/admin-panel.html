@@ -1,0 +1,21 @@
+<section class="admin-panel">
+  <aside class="admin-sidebar">
+    <div>
+      <p class="eyebrow">GlamCart</p>
+      <h2>Admin Panel</h2>
+    </div>
+
+    <nav aria-label="Admin navigation">
+      <a routerLink="/admin/dashboard" routerLinkActive="active">Dashboard</a>
+      <a routerLink="/admin/categories" routerLinkActive="active">Categories</a>
+      <a routerLink="/admin/products" routerLinkActive="active">Products</a>
+      <a routerLink="/admin/orders" routerLinkActive="active">Orders</a>
+    </nav>
+
+    <button type="button" class="button secondary" (click)="signOut()">Sign Out</button>
+  </aside>
+
+  <div class="admin-content">
+    <router-outlet />
+  </div>
+</section>

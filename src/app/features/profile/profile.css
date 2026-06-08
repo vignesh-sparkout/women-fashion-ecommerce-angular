@@ -11,6 +11,21 @@
   gap: 18px;
 }
 
+.account-note {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.form-grid .field-error {
+  margin-top: -8px;
+}
+
+input.invalid {
+  border-color: #dc2626;
+  background: #fff7f7;
+}
+
 @media (max-width: 980px) {
   .account-layout {
     grid-template-columns: 1fr;

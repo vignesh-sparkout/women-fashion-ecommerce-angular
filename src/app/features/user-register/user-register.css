@@ -1,0 +1,11 @@
+@import "../../shared/styles/common.css";
+@import "../../shared/styles/auth.css";
+
+.auth-card {
+  width: min(465px, 100%);
+}
+
+.register-fields {
+  display: grid;
+  gap: 16px;
+}

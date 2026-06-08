@@ -1,0 +1,58 @@
+@import "../../shared/styles/common.css";
+
+.admin-panel {
+  display: grid;
+  grid-template-columns: 260px minmax(0, 1fr);
+  width: min(1320px, calc(100% - 36px));
+  gap: 24px;
+  margin: 32px auto 0;
+}
+
+.admin-sidebar {
+  position: sticky;
+  top: 92px;
+  display: grid;
+  gap: 24px;
+  align-self: start;
+  padding: 22px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #ffffff;
+  box-shadow: var(--shadow);
+}
+
+.admin-sidebar h2 {
+  margin: 6px 0 0;
+}
+
+.admin-sidebar nav {
+  display: grid;
+  gap: 8px;
+}
+
+.admin-sidebar a {
+  padding: 10px 12px;
+  border-radius: 8px;
+  color: var(--muted);
+  font-weight: 800;
+}
+
+.admin-sidebar a.active,
+.admin-sidebar a:hover {
+  color: var(--rose-dark);
+  background: #fff1f3;
+}
+
+.admin-content {
+  min-width: 0;
+}
+
+@media (max-width: 900px) {
+  .admin-panel {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-sidebar {
+    position: static;
+  }
+}

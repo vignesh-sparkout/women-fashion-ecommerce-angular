@@ -109,24 +109,3 @@
     </article>
   </div>
 </section>
-
-<section class="newsletter-section">
-  <div>
-    <p class="eyebrow">Newsletter</p>
-    <h2>Get new arrivals in your inbox</h2>
-  </div>
-
-  <form [formGroup]="newsletterForm" (ngSubmit)="joinNewsletter()" class="newsletter-form">
-    <label>
-      Email address
-      <input type="email" formControlName="email" placeholder="you@example.com" />
-    </label>
-    <button type="submit" class="button primary">Join</button>
-    @if (newsletterForm.controls.email.touched && newsletterForm.controls.email.invalid) {
-      <p class="field-error">Enter a valid email address.</p>
-    }
-    @if (subscribed) {
-      <p class="success-text">You are on the list.</p>
-    }
-  </form>
-</section>

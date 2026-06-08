@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { AuthService } from '../../../core/services/auth.service';
 import { ShopService } from '../../../core/services/shop.service';
 
 @Component({
@@ -14,6 +15,7 @@ export class ProductDetails {
   private readonly route = inject(ActivatedRoute);
   private readonly router = inject(Router);
   private readonly fb = inject(FormBuilder);
+  private readonly auth = inject(AuthService);
   readonly shop = inject(ShopService);
 
   readonly product =
@@ -39,9 +41,24 @@ export class ProductDetails {
   }
 
   buyNow(): void {
-    this.addToCart();
-    if (this.purchaseForm.valid) {
-      this.router.navigate(['/checkout']);
+    if (this.purchaseForm.invalid) {
+      this.purchaseForm.markAllAsTouched();
+      return;
     }
+
+    const value = this.purchaseForm.getRawValue();
+    this.shop.addToCart(this.product, value.size, value.color, value.quantity);
+    this.addedToCart = true;
+
+    if (!this.auth.isSignedIn()) {
+      this.router.navigate(['/auth'], {
+        queryParams: {
+          returnUrl: '/checkout'
+        }
+      });
+      return;
+    }
+
+    this.router.navigate(['/checkout']);
   }
 }

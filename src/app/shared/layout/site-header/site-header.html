@@ -8,10 +8,18 @@
     <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a>
     <a routerLink="/categories" routerLinkActive="active">Categories</a>
     <a routerLink="/products" routerLinkActive="active">Products</a>
-    <a routerLink="/orders" routerLinkActive="active">Orders</a>
-    <a routerLink="/profile" routerLinkActive="active">Profile</a>
-    <a routerLink="/auth" routerLinkActive="active">Sign In</a>
-    <a routerLink="/admin/dashboard" routerLinkActive="active">Admin</a>
+
+    @if (adminAuth.isAdminSignedIn()) {
+      <a routerLink="/admin/dashboard" routerLinkActive="active">Admin</a>
+      <button type="button" class="nav-button" (click)="adminSignOut()">Log Out</button>
+    } @else if (auth.isSignedIn()) {
+      <a routerLink="/orders" routerLinkActive="active">Orders</a>
+      <a routerLink="/profile" routerLinkActive="active">Profile</a>
+      <button type="button" class="nav-button" (click)="userSignOut()">Log Out</button>
+    } @else {
+      <a routerLink="/auth" routerLinkActive="active">Sign In</a>
+      <a routerLink="/admin/dashboard" routerLinkActive="active">Admin</a>
+    }
   </nav>
 
   <div class="header-actions">
