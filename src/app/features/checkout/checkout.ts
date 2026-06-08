@@ -37,7 +37,7 @@ export class Checkout {
 
   couponDiscount(): number {
     const coupon = this.checkoutForm.controls.payment.controls.coupon.value.trim().toUpperCase();
-    return coupon === 'GLAM10' ? Math.round(this.shop.cartTotal() * 0.1) : 0;
+    return coupon === 'VELORA10' ? Math.round(this.shop.cartTotal() * 0.1) : 0;
   }
 
   grandTotal(): number {

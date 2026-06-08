@@ -1,20 +1,29 @@
 <section class="auth-shell">
+  @if (popupMessage) {
+    <div class="auth-popup-backdrop" aria-live="polite">
+      <div class="auth-popup" [class.error]="popupType === 'error'">
+        <span class="auth-popup-mark">{{ popupType === 'success' ? 'OK' : '!' }}</span>
+        <div>
+          <strong>{{ popupTitle }}</strong>
+          <p>{{ popupMessage }}</p>
+        </div>
+      </div>
+    </div>
+  }
+
   <form [formGroup]="loginForm" (ngSubmit)="signIn()" class="auth-card" novalidate>
     <div class="auth-topbar">
       <div class="auth-brand">
-        <span class="brand-mark">G</span>
-        <span>GlamCart</span>
+        <span class="brand-mark">V</span>
+        <span>Velora</span>
       </div>
     </div>
 
-    <div class="auth-heading">
-      <h1>Sign in</h1>
-      <p>Use your email and password to continue.</p>
-    </div>
+    <p class="eyebrow">User Sign In</p>
 
-    @if (registrationDone) {
-      <p class="success-text">Account created. Please sign in to continue.</p>
-    }
+    <div class="auth-heading">
+      <h1>Welcome back</h1>
+    </div>
 
     <div class="field-group">
       <label for="loginEmail">Email address</label>
@@ -23,7 +32,7 @@
         type="email"
         formControlName="email"
         autocomplete="email"
-        placeholder="name@example.com"
+        placeholder="name@gmail.com"
         [class.invalid]="emailInvalid()"
       />
       @if (emailError(); as error) {
@@ -46,15 +55,11 @@
       }
     </div>
 
-    @if (loginMessage) {
-      <p class="field-error form-message">{{ loginMessage }}</p>
-    }
-
     <button type="submit" class="button primary auth-submit">Sign in</button>
 
-    <p class="auth-switch">
-      <span>Not registered?</span>
-      <a routerLink="/register" [queryParams]="{ returnUrl: returnUrl }">Register here</a>
-    </p>
+    <div class="auth-links">
+      <a routerLink="/register" [queryParams]="{ returnUrl: returnUrl }">Create account</a>
+      <a routerLink="/">Back to home</a>
+    </div>
   </form>
 </section>

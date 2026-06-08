@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, OnDestroy, inject } from '@angular/core';
 import { AbstractControl, FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../core/services/auth.service';
@@ -9,7 +9,7 @@ import { AuthService } from '../../core/services/auth.service';
   templateUrl: './user-register.html',
   styleUrl: './user-register.css'
 })
-export class UserRegister {
+export class UserRegister implements OnDestroy {
   private readonly fb = inject(FormBuilder);
   private readonly route = inject(ActivatedRoute);
   private readonly router = inject(Router);
@@ -25,6 +25,12 @@ export class UserRegister {
 
   submitted = false;
   message = '';
+  popupTitle = '';
+  popupMessage = '';
+  popupType: 'success' | 'error' = 'success';
+
+  private popupTimer: ReturnType<typeof setTimeout> | null = null;
+  private navigationTimer: ReturnType<typeof setTimeout> | null = null;
 
   createAccount(): void {
     this.submitted = true;
@@ -32,6 +38,7 @@ export class UserRegister {
 
     if (this.registerForm.invalid || this.passwordsDoNotMatch()) {
       this.registerForm.markAllAsTouched();
+      this.showPopup('Check details', 'Please complete all fields correctly before creating an account.', 'error');
       return;
     }
 
@@ -40,16 +47,27 @@ export class UserRegister {
 
     if (!result.success) {
       this.message = result.message;
+      this.showPopup('Registration failed', result.message, 'error');
       return;
     }
 
-    this.router.navigate(['/auth'], {
-      queryParams: {
-        registered: true,
-        email: value.email,
-        returnUrl: this.returnUrl
-      }
-    });
+    this.showPopup('Account created', 'Redirecting you to sign in.', 'success');
+    this.navigationTimer = setTimeout(() => {
+      this.router.navigate(['/auth'], {
+        queryParams: {
+          registered: true,
+          returnUrl: this.returnUrl
+        }
+      });
+    }, 900);
+  }
+
+  ngOnDestroy(): void {
+    this.clearPopupTimer();
+
+    if (this.navigationTimer) {
+      clearTimeout(this.navigationTimer);
+    }
   }
 
   passwordsDoNotMatch(): boolean {
@@ -160,5 +178,22 @@ export class UserRegister {
 
   private showMismatchError(control: AbstractControl): boolean {
     return this.passwordsDoNotMatch() && (control.touched || this.submitted);
+  }
+
+  private showPopup(title: string, message: string, type: 'success' | 'error'): void {
+    this.clearPopupTimer();
+    this.popupTitle = title;
+    this.popupMessage = message;
+    this.popupType = type;
+    this.popupTimer = setTimeout(() => {
+      this.popupMessage = '';
+    }, 2600);
+  }
+
+  private clearPopupTimer(): void {
+    if (this.popupTimer) {
+      clearTimeout(this.popupTimer);
+      this.popupTimer = null;
+    }
   }
 }

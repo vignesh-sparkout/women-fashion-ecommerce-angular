@@ -5,7 +5,7 @@ interface AdminResult {
   message: string;
 }
 
-const adminSessionKey = 'glamcart_admin_signed_in';
+const adminSessionKey = 'velora_admin_signed_in';
 const adminEmail = 'vicky@gmail.com';
 const adminPassword = '777777';
 

@@ -12,7 +12,7 @@
           <img [src]="item.product.image" [alt]="item.product.name" />
           <div>
             <h2>{{ item.product.name }}</h2>
-            <p>{{ item.size }} · {{ item.color }}</p>
+            <p>{{ item.size }} / {{ item.color }}</p>
             <strong>{{ item.product.discountPrice | currency: 'INR' : 'symbol' : '1.0-0' }}</strong>
           </div>
           <label>
@@ -45,7 +45,7 @@
         <span>Total</span>
         <strong>{{ grandTotal() | currency: 'INR' : 'symbol' : '1.0-0' }}</strong>
       </div>
-      <p class="coupon-note">Use GLAM10 during checkout for an extra discount.</p>
+      <p class="coupon-note">Use VELORA10 during checkout for an extra discount.</p>
       <a routerLink="/checkout" class="button primary full">Checkout</a>
     </aside>
   </section>

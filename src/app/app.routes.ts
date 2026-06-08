@@ -9,19 +9,23 @@ export const routes: Routes = [
   },
   {
     path: 'categories',
+    canActivate: [authGuard],
     loadComponent: () => import('./features/categories/categories').then((m) => m.Categories)
   },
   {
     path: 'products',
+    canActivate: [authGuard],
     loadComponent: () => import('./features/products/products').then((m) => m.Products)
   },
   {
     path: 'products/:id',
+    canActivate: [authGuard],
     loadComponent: () =>
       import('./features/products/product-details/product-details').then((m) => m.ProductDetails)
   },
   {
     path: 'cart',
+    canActivate: [authGuard],
     loadComponent: () => import('./features/cart/cart').then((m) => m.Cart)
   },
   {

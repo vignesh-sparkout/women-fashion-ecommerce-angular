@@ -1,9 +1,21 @@
 <section class="auth-shell">
+  @if (popupMessage) {
+    <div class="auth-popup-backdrop" aria-live="polite">
+      <div class="auth-popup" [class.error]="popupType === 'error'">
+        <span class="auth-popup-mark">{{ popupType === 'success' ? 'OK' : '!' }}</span>
+        <div>
+          <strong>{{ popupTitle }}</strong>
+          <p>{{ popupMessage }}</p>
+        </div>
+      </div>
+    </div>
+  }
+
   <form [formGroup]="registerForm" (ngSubmit)="createAccount()" class="auth-card" novalidate>
     <div class="auth-topbar">
       <div class="auth-brand">
-        <span class="brand-mark">G</span>
-        <span>GlamCart</span>
+        <span class="brand-mark">V</span>
+        <span>Velora</span>
       </div>
     </div>
 
@@ -34,7 +46,7 @@
           type="email"
           formControlName="email"
           autocomplete="email"
-          placeholder="name@example.com"
+          placeholder="name@gmail.com"
           [class.invalid]="emailInvalid()"
         />
         @if (emailError(); as error) {
@@ -72,10 +84,6 @@
         }
       </div>
     </div>
-
-    @if (message) {
-      <p class="field-error form-message">{{ message }}</p>
-    }
 
     <button type="submit" class="button primary auth-submit">Create account</button>
 

@@ -14,8 +14,8 @@ interface AuthResult {
   message: string;
 }
 
-const currentUserKey = 'glamcart_current_user';
-const registeredUsersKey = 'glamcart_registered_users';
+const currentUserKey = 'velora_current_user';
+const registeredUsersKey = 'velora_registered_users';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {

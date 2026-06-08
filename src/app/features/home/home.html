@@ -1,13 +1,13 @@
 <section class="hero" [style.background-image]="heroImage">
   <div class="hero-content">
-    <p class="eyebrow">New season edit</p>
-    <h1>Women's Clothing E-Commerce</h1>
+    <p class="eyebrow">Velora</p>
+    <h1>Discover Your Perfect Style</h1>
     <p>
-      Shop ethnic wear, western wear, party styles, active wear, night wear, and accessories from one elegant store.
+      Elegant Fashion for Every Woman, Every Occasion.
     </p>
     <div class="hero-actions">
-      <a routerLink="/products" class="button primary">Shop Products</a>
-      <a routerLink="/categories" class="button secondary">View Categories</a>
+      <a routerLink="/products" class="button primary">Shop the Edit</a>
+      <a routerLink="/categories" class="button secondary">Browse Collections</a>
     </div>
   </div>
 </section>
@@ -76,7 +76,7 @@
           <img [src]="product.image" [alt]="product.name" />
         </a>
         <div class="product-info">
-          <p>{{ product.subCategory }} · {{ product.rating }} stars</p>
+          <p>{{ product.subCategory }} / {{ product.rating }} stars</p>
           <h3>{{ product.name }}</h3>
           <div class="price-row">
             <strong>{{ product.discountPrice | currency: 'INR' : 'symbol' : '1.0-0' }}</strong>
@@ -88,24 +88,11 @@
   </div>
 </section>
 
-<section class="section split-section">
+<section class="section offer-section">
   <div class="offer-panel">
     <p class="eyebrow">Seasonal offers</p>
-    <h2>Use GLAM10 for 10% off checkout orders.</h2>
-    <p>Offer applies automatically when the coupon code is entered on the checkout page.</p>
-    <a routerLink="/checkout" class="button primary">Go to Checkout</a>
-  </div>
-
-  <div class="reviews">
-    <article>
-      <strong>4.8/5</strong>
-      <p>"The category flow is easy and the product details are very clear."</p>
-      <span>Priya S.</span>
-    </article>
-    <article>
-      <strong>Fast delivery</strong>
-      <p>"The saree and office shirt arrived packed beautifully."</p>
-      <span>Anika M.</span>
-    </article>
+    <h2>Use VELORA10 for 10% off your order.</h2>
+    <p>Explore the latest pieces and apply the coupon when you place your order.</p>
+    <a routerLink="/products" class="button primary">Shop Offers</a>
   </div>
 </section>

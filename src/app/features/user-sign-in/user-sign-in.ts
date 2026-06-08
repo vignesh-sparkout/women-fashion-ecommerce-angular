@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, OnDestroy, inject } from '@angular/core';
 import { AbstractControl, FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../core/services/auth.service';
@@ -9,30 +9,47 @@ import { AuthService } from '../../core/services/auth.service';
   templateUrl: './user-sign-in.html',
   styleUrl: './user-sign-in.css'
 })
-export class UserSignIn {
+export class UserSignIn implements OnDestroy {
   private readonly fb = inject(FormBuilder);
   private readonly route = inject(ActivatedRoute);
   private readonly router = inject(Router);
   private readonly authService = inject(AuthService);
 
   readonly returnUrl = this.route.snapshot.queryParamMap.get('returnUrl') ?? '/products';
-  readonly registeredEmail = this.route.snapshot.queryParamMap.get('email') ?? '';
   readonly registrationDone = this.route.snapshot.queryParamMap.get('registered') === 'true';
 
   readonly loginForm = this.fb.nonNullable.group({
-    email: [this.registeredEmail, [Validators.required, Validators.email, Validators.minLength(5)]],
+    email: ['', [Validators.required, Validators.email, Validators.minLength(5)]],
     password: ['', [Validators.required, Validators.minLength(6)]]
   });
 
   loginSubmitted = false;
-  loginMessage = '';
+  errorMessage = '';
+  popupTitle = '';
+  popupMessage = '';
+  popupType: 'success' | 'error' = 'success';
+
+  private popupTimer: ReturnType<typeof setTimeout> | null = null;
+  private navigationTimer: ReturnType<typeof setTimeout> | null = null;
+
+  constructor() {
+    if (this.authService.isSignedIn()) {
+      this.router.navigateByUrl(this.returnUrl);
+      return;
+    }
+
+    if (this.registrationDone) {
+      this.showPopup('Account created', 'Please type your email and password to sign in.', 'success');
+    }
+  }
 
   signIn(): void {
     this.loginSubmitted = true;
-    this.loginMessage = '';
+    this.errorMessage = '';
 
     if (this.loginForm.invalid) {
       this.loginForm.markAllAsTouched();
+      this.showPopup('Check details', 'Please enter a valid email and password.', 'error');
       return;
     }
 
@@ -40,12 +57,22 @@ export class UserSignIn {
     const result = this.authService.signIn(value.email, value.password);
 
     if (!result.success) {
-      this.loginMessage = result.message;
+      this.errorMessage = result.message;
+      this.showPopup('Sign in failed', result.message, 'error');
       return;
     }
 
     this.loginSubmitted = false;
-    this.router.navigateByUrl(this.returnUrl);
+    this.showPopup('Welcome back', result.message, 'success');
+    this.navigationTimer = setTimeout(() => this.router.navigateByUrl(this.returnUrl), 900);
+  }
+
+  ngOnDestroy(): void {
+    this.clearPopupTimer();
+
+    if (this.navigationTimer) {
+      clearTimeout(this.navigationTimer);
+    }
   }
 
   emailInvalid(): boolean {
@@ -98,5 +125,22 @@ export class UserSignIn {
 
   private showError(control: AbstractControl): boolean {
     return control.invalid && (control.touched || this.loginSubmitted);
+  }
+
+  private showPopup(title: string, message: string, type: 'success' | 'error'): void {
+    this.clearPopupTimer();
+    this.popupTitle = title;
+    this.popupMessage = message;
+    this.popupType = type;
+    this.popupTimer = setTimeout(() => {
+      this.popupMessage = '';
+    }, 2600);
+  }
+
+  private clearPopupTimer(): void {
+    if (this.popupTimer) {
+      clearTimeout(this.popupTimer);
+      this.popupTimer = null;
+    }
   }
 }

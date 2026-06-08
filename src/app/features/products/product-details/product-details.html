@@ -4,14 +4,14 @@
   </div>
 
   <div class="details-info">
-    <p class="eyebrow">{{ product.category }} · {{ product.subCategory }}</p>
+    <p class="eyebrow">{{ product.category }} / {{ product.subCategory }}</p>
     <h1>{{ product.name }}</h1>
     <div class="price-row large">
       <strong>{{ product.discountPrice | currency: 'INR' : 'symbol' : '1.0-0' }}</strong>
       <span>{{ product.price | currency: 'INR' : 'symbol' : '1.0-0' }}</span>
     </div>
     <p>{{ product.description }}</p>
-    <p class="stock-text">{{ product.stock }} items available · {{ product.rating }} star rating</p>
+    <p class="stock-text">{{ product.stock }} items available / {{ product.rating }} star rating</p>
 
     <form [formGroup]="purchaseForm" (ngSubmit)="addToCart()" class="purchase-form">
       <label>

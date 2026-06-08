@@ -1,30 +1,6 @@
 @import "../../shared/styles/common.css";
+@import "../../shared/styles/auth.css";
 
-.admin-sign-in-page {
-  display: grid;
-  min-height: 72vh;
-  place-items: center;
-  padding: 48px 18px;
-  background: #f5f7fb;
-}
-
-.admin-card {
-  display: grid;
-  width: min(460px, 100%);
-  gap: 18px;
-  padding: 30px;
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  background: #ffffff;
-  box-shadow: var(--shadow);
-}
-
-.admin-card h1 {
-  margin: 8px 0;
-  font-size: clamp(2rem, 4vw, 3rem);
-}
-
-.admin-card p {
-  color: var(--muted);
-  line-height: 1.6;
+.admin-auth-card {
+  width: min(465px, 100%);
 }

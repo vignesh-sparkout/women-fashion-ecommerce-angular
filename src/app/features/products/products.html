@@ -75,7 +75,7 @@
                 <span>{{ badge }}</span>
               }
             </div>
-            <p>{{ product.category }} · {{ product.subCategory }}</p>
+            <p>{{ product.category }} / {{ product.subCategory }}</p>
             <h2>{{ product.name }}</h2>
             <div class="price-row">
               <strong>{{ product.discountPrice | currency: 'INR' : 'symbol' : '1.0-0' }}</strong>
@@ -84,7 +84,7 @@
             <div class="card-actions">
               <a [routerLink]="['/products', product.id]" class="button primary">View</a>
               <button type="button" class="button secondary" (click)="toggleWishlist(product.id)">
-                {{ shop.isWishlisted(product.id) ? 'Saved' : 'Wishlist' }}
+                {{ shop.isWishlisted(product.id) ? 'Liked' : 'Like' }}
               </button>
             </div>
           </div>
