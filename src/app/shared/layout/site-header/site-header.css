@@ -3,8 +3,8 @@
   --muted: #667085;
   --line: #eadde4;
   --surface: #ffffff;
-  --rose: #fc2779;
-  --rose-dark: #d91f67;
+  --rose: #d83a73;
+  --rose-dark: #b92d61;
   --teal: #0b7f78;
   display: block;
 }
@@ -51,8 +51,8 @@ a {
   place-items: center;
   border-radius: 8px;
   color: #ffffff;
-  background: linear-gradient(135deg, var(--rose), #17121a);
-  box-shadow: 0 10px 24px rgba(252, 39, 121, 0.22);
+  background: linear-gradient(135deg, var(--rose), #221923);
+  box-shadow: 0 8px 18px rgba(216, 58, 115, 0.16);
 }
 
 .primary-nav {
@@ -84,17 +84,17 @@ a {
 
 .nav-button {
   border: 0;
-  background: linear-gradient(135deg, var(--rose), #17121a);
+  background: linear-gradient(135deg, var(--rose), #221923);
   color: #ffffff;
   cursor: pointer;
   font-weight: 800;
-  box-shadow: 0 10px 24px rgba(252, 39, 121, 0.2);
+  box-shadow: 0 8px 18px rgba(216, 58, 115, 0.16);
 }
 
 .nav-button:hover {
   color: #ffffff;
-  background: linear-gradient(135deg, var(--rose-dark), #17121a);
-  box-shadow: 0 14px 30px rgba(252, 39, 121, 0.28);
+  background: linear-gradient(135deg, var(--rose-dark), #221923);
+  box-shadow: 0 10px 22px rgba(216, 58, 115, 0.22);
 }
 
 .header-actions {

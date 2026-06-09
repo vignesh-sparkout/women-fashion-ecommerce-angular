@@ -1,104 +1,280 @@
-<section class="page-title">
-  <p class="eyebrow">My Account</p>
-  <h1>Profile and addresses</h1>
-  <p>Manage the customer details used for checkout and order updates.</p>
-</section>
+<section class="profile-address-section">
+  <div class="profile-address-card">
+    <aside class="address-story" aria-label="Address form introduction">
+      <div class="story-copy">
+        <p class="story-kicker">Add New Address</p>
+        <h1>Delivering <span>happiness</span></h1>
+        <p>Please provide the correct address details for a smooth delivery experience.</p>
+      </div>
 
-<section class="account-layout">
-  <form [formGroup]="profileForm" (ngSubmit)="saveProfile()" class="form-section">
-    <h2>Profile</h2>
-    @if (auth.currentUser(); as user) {
-      <p class="account-note">Signed in as {{ user.email }}</p>
-    }
+      <div class="delivery-illustration" aria-hidden="true">
+        <span class="cloud cloud-one"></span>
+        <span class="cloud cloud-two"></span>
+        <span class="map-pin"></span>
+        <span class="house">
+          <span class="roof"></span>
+          <span class="tower"></span>
+          <span class="door"></span>
+          <span class="window window-left"></span>
+          <span class="window window-right"></span>
+        </span>
+        <span class="scooter">
+          <span class="box"></span>
+          <span class="rider"></span>
+          <span class="body"></span>
+          <span class="wheel wheel-left"></span>
+          <span class="wheel wheel-right"></span>
+        </span>
+        <span class="route"></span>
+        <span class="paper-plane"></span>
+      </div>
+    </aside>
 
-    <div class="form-grid">
-      <label class="wide">
-        Full name
-        <input type="text" formControlName="fullName" [class.invalid]="fullNameInvalid()" />
-      </label>
-      @if (fullNameError(); as error) {
-        <p class="field-error wide">{{ error }}</p>
+    <form [formGroup]="accountForm" (ngSubmit)="saveDetails()" class="address-form">
+      <header class="form-header">
+        <span class="header-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24">
+            <path d="M12 21s7-5.1 7-11a7 7 0 0 0-14 0c0 5.9 7 11 7 11Z" />
+            <circle cx="12" cy="10" r="2.4" />
+          </svg>
+        </span>
+        <div>
+          <h2>Profile & Shipping Address</h2>
+          <p>All required details in one form</p>
+        </div>
+      </header>
+
+      @if (auth.currentUser(); as user) {
+        <p class="signed-in-note">Signed in as {{ user.email }}</p>
       }
 
-      <label class="wide">
-        Email
-        <input type="email" formControlName="email" [class.invalid]="emailInvalid()" />
+      <div class="address-form-grid">
+        <div class="field">
+          <label for="profileFullName">Full Name</label>
+          <div class="input-shell" [class.invalid]="controlInvalid(accountForm.controls.fullName)">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm-7 8a7 7 0 0 1 14 0" />
+            </svg>
+            <input
+              id="profileFullName"
+              type="text"
+              formControlName="fullName"
+              placeholder="Enter your full name"
+            />
+          </div>
+          @if (fieldError('fullName'); as error) {
+            <p class="field-error">{{ error }}</p>
+          }
+        </div>
+
+        <div class="field">
+          <label for="profilePhone">Phone Number</label>
+          <div class="input-shell" [class.invalid]="controlInvalid(accountForm.controls.phone)">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M7 5.5 9.2 4l3 5-2 1.3a9.4 9.4 0 0 0 3.5 3.5l1.3-2 5 3-1.5 2.2c-.6.9-1.7 1.3-2.8 1A15.2 15.2 0 0 1 6 8.3c-.3-1.1.1-2.2 1-2.8Z" />
+            </svg>
+            <input
+              id="profilePhone"
+              type="tel"
+              formControlName="phone"
+              placeholder="Enter phone number"
+            />
+          </div>
+          @if (fieldError('phone'); as error) {
+            <p class="field-error">{{ error }}</p>
+          }
+        </div>
+
+        <div class="field wide">
+          <label for="profileEmail">Email Address</label>
+          <div class="input-shell" [class.invalid]="controlInvalid(accountForm.controls.email)">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M4 6h16v12H4V6Zm1.5 1.5L12 13l6.5-5.5" />
+            </svg>
+            <input
+              id="profileEmail"
+              type="email"
+              formControlName="email"
+              placeholder="Enter your email address"
+            />
+          </div>
+          @if (fieldError('email'); as error) {
+            <p class="field-error">{{ error }}</p>
+          }
+        </div>
+
+        <div class="field wide">
+          <label for="addressLine1">Address Line 1</label>
+          <div
+            class="input-shell"
+            [class.invalid]="controlInvalid(accountForm.controls.addressLine1)"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="m4 11 8-7 8 7v8H6v-8" />
+              <path d="M10 19v-5h4v5" />
+            </svg>
+            <input
+              id="addressLine1"
+              type="text"
+              formControlName="addressLine1"
+              placeholder="House number, building, street"
+            />
+          </div>
+          @if (fieldError('addressLine1'); as error) {
+            <p class="field-error">{{ error }}</p>
+          }
+        </div>
+
+        <div class="field wide">
+          <label for="addressLine2">Address Line 2 <span>(Optional)</span></label>
+          <div class="input-shell">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M6 21V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v16" />
+              <path d="M9 8h2M13 8h2M9 12h2M13 12h2M9 16h2M13 16h2M4 21h16" />
+            </svg>
+            <input
+              id="addressLine2"
+              type="text"
+              formControlName="addressLine2"
+              placeholder="Apartment, suite, unit, etc."
+            />
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="profileCity">City / Town</label>
+          <div class="input-shell" [class.invalid]="controlInvalid(accountForm.controls.city)">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M5 21V7h6v14M13 21V3h6v18M3 21h18" />
+              <path d="M8 10h1M8 14h1M16 7h1M16 11h1M16 15h1" />
+            </svg>
+            <input
+              id="profileCity"
+              type="text"
+              formControlName="city"
+              placeholder="Enter your city"
+            />
+          </div>
+          @if (fieldError('city'); as error) {
+            <p class="field-error">{{ error }}</p>
+          }
+        </div>
+
+        <div class="field">
+          <label for="profileState">State / Province</label>
+          <div class="input-shell select-shell" [class.invalid]="controlInvalid(accountForm.controls.state)">
+            <select id="profileState" formControlName="state">
+              <option value="" disabled>Select your state</option>
+              @for (state of stateOptions; track state) {
+                <option [value]="state">{{ state }}</option>
+              }
+            </select>
+            <svg class="select-chevron" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="m7 10 5 5 5-5" />
+            </svg>
+          </div>
+          @if (fieldError('state'); as error) {
+            <p class="field-error">{{ error }}</p>
+          }
+        </div>
+
+        <div class="field">
+          <label for="profilePinCode">Postal / Zip Code</label>
+          <div class="input-shell" [class.invalid]="controlInvalid(accountForm.controls.pinCode)">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M4 6h16v12H4V6Zm0 3 8 5 8-5" />
+            </svg>
+            <input
+              id="profilePinCode"
+              type="text"
+              formControlName="pinCode"
+              placeholder="Enter postal code"
+            />
+          </div>
+          @if (fieldError('pinCode'); as error) {
+            <p class="field-error">{{ error }}</p>
+          }
+        </div>
+
+        <div class="field">
+          <label for="profileCountry">Country</label>
+          <div class="input-shell select-shell" [class.invalid]="controlInvalid(accountForm.controls.country)">
+            <select id="profileCountry" formControlName="country">
+              <option value="India">India</option>
+            </select>
+            <svg class="select-chevron" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="m7 10 5 5 5-5" />
+            </svg>
+          </div>
+          @if (fieldError('country'); as error) {
+            <p class="field-error">{{ error }}</p>
+          }
+        </div>
+      </div>
+
+      <label class="default-checkbox">
+        <input type="checkbox" formControlName="defaultAddress" />
+        <span>Make this my default address</span>
       </label>
-      @if (emailError(); as error) {
-        <p class="field-error wide">{{ error }}</p>
+
+      @if (submitted && accountForm.invalid) {
+        <p class="field-error form-error">Please fill all required details correctly.</p>
       }
-    </div>
 
-    <button type="submit" class="button primary">Save Profile</button>
-    @if (profileMessage) {
-      <p [class.success-text]="profileSaved" [class.field-error]="!profileSaved">{{ profileMessage }}</p>
-    }
-  </form>
+      @if (saveMessage) {
+        <p class="save-message" [class.error]="!saveSucceeded">{{ saveMessage }}</p>
+      }
 
-  <form [formGroup]="addressForm" (ngSubmit)="saveAddress()" class="form-section">
-    <h2>Addresses</h2>
-    <div class="form-grid">
-      <label class="wide">
-        Address
-        <textarea rows="3" formControlName="address"></textarea>
-      </label>
-      <label>
-        City
-        <input type="text" formControlName="city" />
-      </label>
-      <label>
-        State
-        <input type="text" formControlName="state" />
-      </label>
-      <label>
-        Pin code
-        <input type="text" formControlName="pinCode" />
-      </label>
-    </div>
-    <button type="submit" class="button primary">Save Address</button>
-    @if (addressSaved) {
-      <p class="success-text">Address saved.</p>
-    }
-  </form>
+      <button type="submit" class="save-address-button">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M5 4h12l2 2v14H5V4Zm3 0v5h8V4M8 20v-6h8v6" />
+        </svg>
+        <span>Save Details</span>
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M5 12h14M13 6l6 6-6 6" />
+        </svg>
+      </button>
+    </form>
+  </div>
 </section>
 
-<section class="section">
+<section class="section orders-section">
   <div class="section-heading">
     <div>
       <p class="eyebrow">Orders</p>
       <h2>Recent orders</h2>
     </div>
   </div>
-  <div class="table-card">
-    <table>
-      <thead>
-        <tr>
-          <th>Order</th>
-          <th>Date</th>
-          <th>Status</th>
-          <th>Total</th>
-        </tr>
-      </thead>
-      <tbody>
-        @for (order of shop.recentOrders.slice(0, 3); track order.id) {
+  @if (shop.userOrders().length) {
+    <div class="table-card">
+      <table>
+        <thead>
           <tr>
-            <td>{{ order.id }}</td>
-            <td>{{ order.date }}</td>
-            <td><span class="status-pill">{{ order.status }}</span></td>
-            <td>{{ order.total | currency: 'INR' : 'symbol' : '1.0-0' }}</td>
+            <th>Order</th>
+            <th>Date</th>
+            <th>Status</th>
+            <th>Total</th>
           </tr>
-        }
-      </tbody>
-    </table>
-  </div>
-</section>
-
-<section class="section muted">
-  <div class="section-heading">
-    <div>
-      <p class="eyebrow">Liked</p>
-      <h2>{{ shop.wishlistCount() }} liked products</h2>
+        </thead>
+        <tbody>
+          @for (order of shop.userOrders().slice(0, 3); track order.id) {
+            <tr>
+              <td>{{ order.id }}</td>
+              <td>{{ order.date }}</td>
+              <td>
+                <span class="status-pill">{{ order.status }}</span>
+              </td>
+              <td>{{ order.total | currency: 'INR' : 'symbol' : '1.0-0' }}</td>
+            </tr>
+          }
+        </tbody>
+      </table>
     </div>
-    <a routerLink="/wishlist">Open liked</a>
-  </div>
+  } @else {
+    <div class="empty-state">
+      <h2>No orders yet</h2>
+      <p>Your placed orders will appear here.</p>
+      <a routerLink="/products" class="button primary">Shop Products</a>
+    </div>
+  }
 </section>

@@ -4,8 +4,8 @@
   --line: #eadde4;
   --surface: #ffffff;
   --soft: #fff6fa;
-  --rose: #fc2779;
-  --rose-dark: #d91f67;
+  --rose: #d83a73;
+  --rose-dark: #b92d61;
   --teal: #0b7f78;
   --shadow: 0 16px 45px rgba(23, 18, 26, 0.08);
   display: block;
@@ -34,13 +34,13 @@ textarea {
   border-radius: 8px;
   color: #ffffff;
   font-weight: 800;
-  background: linear-gradient(135deg, var(--rose), #17121a);
-  box-shadow: 0 10px 24px rgba(252, 39, 121, 0.2);
+  background: linear-gradient(135deg, var(--rose), #221923);
+  box-shadow: 0 8px 18px rgba(216, 58, 115, 0.16);
 }
 
 .button:hover {
-  background: linear-gradient(135deg, var(--rose-dark), #17121a);
-  box-shadow: 0 14px 30px rgba(252, 39, 121, 0.28);
+  background: linear-gradient(135deg, var(--rose-dark), #221923);
+  box-shadow: 0 10px 22px rgba(216, 58, 115, 0.22);
   transform: translateY(-1px);
 }
 

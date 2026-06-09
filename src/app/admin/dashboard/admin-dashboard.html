@@ -7,11 +7,11 @@
 <section class="stats-grid">
   <article class="stat-card">
     <span>Total Orders</span>
-    <strong>{{ totalOrders }}</strong>
+    <strong>{{ totalOrders() }}</strong>
   </article>
   <article class="stat-card">
     <span>Total Revenue</span>
-    <strong>{{ totalRevenue | currency: 'INR' : 'symbol' : '1.0-0' }}</strong>
+    <strong>{{ totalRevenue() | currency: 'INR' : 'symbol' : '1.0-0' }}</strong>
   </article>
   <article class="stat-card">
     <span>Total Products</span>
@@ -39,28 +39,37 @@
     </div>
   </div>
 
-  <div class="table-card">
-    <table>
-      <thead>
-        <tr>
-          <th>Order ID</th>
-          <th>Customer</th>
-          <th>Date</th>
-          <th>Status</th>
-          <th>Total</th>
-        </tr>
-      </thead>
-      <tbody>
-        @for (order of shop.recentOrders; track order.id) {
+  @if (shop.allOrders().length) {
+    <div class="table-card">
+      <table>
+        <thead>
           <tr>
-            <td>{{ order.id }}</td>
-            <td>{{ order.customer }}</td>
-            <td>{{ order.date }}</td>
-            <td><span class="status-pill">{{ order.status }}</span></td>
-            <td>{{ order.total | currency: 'INR' : 'symbol' : '1.0-0' }}</td>
+            <th>Order ID</th>
+            <th>Customer</th>
+            <th>Date</th>
+            <th>Status</th>
+            <th>Total</th>
           </tr>
-        }
-      </tbody>
-    </table>
-  </div>
+        </thead>
+        <tbody>
+          @for (order of shop.allOrders().slice(0, 5); track order.id) {
+            <tr>
+              <td>{{ order.id }}</td>
+              <td>{{ order.customer }}</td>
+              <td>{{ order.date }}</td>
+              <td>
+                <span class="status-pill">{{ order.status }}</span>
+              </td>
+              <td>{{ order.total | currency: 'INR' : 'symbol' : '1.0-0' }}</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  } @else {
+    <div class="empty-state">
+      <h2>No orders yet</h2>
+      <p>Customer orders will appear after checkout.</p>
+    </div>
+  }
 </section>

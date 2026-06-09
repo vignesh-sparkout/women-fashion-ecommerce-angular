@@ -5,26 +5,37 @@
 </section>
 
 <section class="section">
-  <div class="table-card">
-    <table>
-      <thead>
-        <tr>
-          <th>Order</th>
-          <th>Date</th>
-          <th>Status</th>
-          <th>Total</th>
-        </tr>
-      </thead>
-      <tbody>
-        @for (order of shop.recentOrders; track order.id) {
+  @if (shop.userOrders().length) {
+    <div class="table-card">
+      <table>
+        <thead>
           <tr>
-            <td>{{ order.id }}</td>
-            <td>{{ order.date }}</td>
-            <td><span class="status-pill">{{ order.status }}</span></td>
-            <td>{{ order.total | currency: 'INR' : 'symbol' : '1.0-0' }}</td>
+            <th>Order</th>
+            <th>Date</th>
+            <th>Items</th>
+            <th>Status</th>
+            <th>Total</th>
           </tr>
-        }
-      </tbody>
-    </table>
-  </div>
+        </thead>
+        <tbody>
+          @for (order of shop.userOrders(); track order.id) {
+            <tr>
+              <td>{{ order.id }}</td>
+              <td>{{ order.date }}</td>
+              <td>{{ order.items.length }}</td>
+              <td>
+                <span class="status-pill">{{ order.status }}</span>
+              </td>
+              <td>{{ order.total | currency: 'INR' : 'symbol' : '1.0-0' }}</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  } @else {
+    <div class="empty-state">
+      <h2>No orders yet</h2>
+      <p>Your order history will appear after checkout.</p>
+    </div>
+  }
 </section>

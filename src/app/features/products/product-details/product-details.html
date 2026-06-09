@@ -1,23 +1,25 @@
 <section class="details-layout">
   <div class="details-image">
-    <img [src]="product.image" [alt]="product.name" />
+    <img [src]="product().image" [alt]="product().name" />
   </div>
 
   <div class="details-info">
-    <p class="eyebrow">{{ product.category }} / {{ product.subCategory }}</p>
-    <h1>{{ product.name }}</h1>
+    <p class="eyebrow">{{ product().category }} / {{ product().subCategory }}</p>
+    <h1>{{ product().name }}</h1>
     <div class="price-row large">
-      <strong>{{ product.discountPrice | currency: 'INR' : 'symbol' : '1.0-0' }}</strong>
-      <span>{{ product.price | currency: 'INR' : 'symbol' : '1.0-0' }}</span>
+      <strong>{{ product().discountPrice | currency: 'INR' : 'symbol' : '1.0-0' }}</strong>
+      <span>{{ product().price | currency: 'INR' : 'symbol' : '1.0-0' }}</span>
     </div>
-    <p>{{ product.description }}</p>
-    <p class="stock-text">{{ product.stock }} items available / {{ product.rating }} star rating</p>
+    <p>{{ product().description }}</p>
+    <p class="stock-text">
+      {{ product().stock }} items available / {{ product().rating }} star rating
+    </p>
 
     <form [formGroup]="purchaseForm" (ngSubmit)="addToCart()" class="purchase-form">
       <label>
         Size
         <select formControlName="size">
-          @for (size of product.sizes; track size) {
+          @for (size of product().sizes; track size) {
             <option [value]="size">{{ size }}</option>
           }
         </select>
@@ -26,7 +28,7 @@
       <label>
         Color
         <select formControlName="color">
-          @for (color of product.colors; track color) {
+          @for (color of product().colors; track color) {
             <option [value]="color">{{ color }}</option>
           }
         </select>
@@ -58,7 +60,7 @@
   </div>
 
   <div class="product-grid">
-    @for (related of relatedProducts; track related.id) {
+    @for (related of relatedProducts(); track related.id) {
       <article class="product-card">
         <a [routerLink]="['/products', related.id]" class="product-image">
           <img [src]="related.image" [alt]="related.name" />

@@ -4,39 +4,64 @@ export const categoryGroups: CategoryGroup[] = [
   {
     name: 'Ethnic Wear',
     description: 'Sarees, kurtis, salwar sets, and lehengas for festive days.',
-    image: 'https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=900&q=80',
-    children: ['Sarees', 'Kurtis', 'Salwar Sets', 'Lehengas']
+    image:
+      'https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=900&q=80',
+    children: ['Sarees', 'Kurtis', 'Salwar Sets', 'Lehengas'],
   },
   {
     name: 'Western Wear',
-    description: 'Dresses, tops, shirts, jeans, trousers, and skirts.',
-    image: 'https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=900&q=80',
-    children: ['Dresses', 'Tops', 'Shirts', 'Jeans', 'Trousers', 'Skirts']
+    description: 'Dresses, tops, shirts, jeans, trousers, skirts, and fresh dress edits.',
+    image:
+      'https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=900&q=80',
+    children: [
+      'Dresses',
+      'Maxi Dresses',
+      'Shirt Dresses',
+      'Bodycon Dresses',
+      'Tops',
+      'Shirts',
+      'Jeans',
+      'Trousers',
+      'Skirts',
+    ],
   },
   {
     name: 'Party Wear',
     description: 'Gowns, party dresses, and designer collections.',
-    image: 'https://images.unsplash.com/photo-1595777457583-95e059d581b8?auto=format&fit=crop&w=900&q=80',
-    children: ['Gowns', 'Party Dresses', 'Designer Collections']
+    image:
+      'https://images.unsplash.com/photo-1595777457583-95e059d581b8?auto=format&fit=crop&w=900&q=80',
+    children: ['Gowns', 'Party Dresses', 'Designer Collections'],
   },
   {
     name: 'Active Wear',
     description: 'Gym wear, leggings, and sports tops.',
-    image: 'https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=900&q=80',
-    children: ['Gym Wear', 'Leggings', 'Sports Tops']
+    image:
+      'https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=900&q=80',
+    children: ['Gym Wear', 'Leggings', 'Sports Tops'],
   },
   {
     name: 'Night Wear',
     description: 'Night suits and sleepwear for easy comfort.',
-    image: 'https://images.unsplash.com/photo-1534126511673-b6899657816a?auto=format&fit=crop&w=900&q=80',
-    children: ['Night Suits', 'Sleepwear']
+    image:
+      'https://images.unsplash.com/photo-1534126511673-b6899657816a?auto=format&fit=crop&w=900&q=80',
+    children: ['Night Suits', 'Sleepwear'],
   },
   {
     name: 'Accessories',
-    description: 'Handbags, scarves, and jewellery to complete each look.',
-    image: 'https://images.unsplash.com/photo-1594223274512-ad4803739b7c?auto=format&fit=crop&w=900&q=80',
-    children: ['Handbags', 'Scarves', 'Jewellery', 'Hair Accessories']
-  }
+    description:
+      'Handbags, scarves, jewellery, sunglasses, belts, and hair pieces to complete each look.',
+    image:
+      'https://images.unsplash.com/photo-1594223274512-ad4803739b7c?auto=format&fit=crop&w=900&q=80',
+    children: [
+      'Handbags',
+      'Scarves',
+      'Jewellery',
+      'Hair Accessories',
+      'Sunglasses',
+      'Belts',
+      'Bracelets',
+    ],
+  },
 ];
 
 export const products: Product[] = [
@@ -52,11 +77,12 @@ export const products: Product[] = [
     stock: 18,
     sizes: ['Free Size'],
     colors: ['Rose', 'Gold', 'Maroon'],
-    image: 'https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=900&q=80',
+    image:
+      'https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=900&q=80',
     badges: ['Festive', '20% Off'],
     description: 'Soft silk blend saree with a light zari border and ready-to-style drape.',
     isNew: true,
-    isBestSeller: true
+    isBestSeller: true,
   },
   {
     id: 2,
@@ -70,11 +96,12 @@ export const products: Product[] = [
     stock: 34,
     sizes: ['S', 'M', 'L', 'XL'],
     colors: ['Teal', 'White', 'Mustard'],
-    image: 'https://commons.wikimedia.org/wiki/Special:FilePath/Indian_woman_wearing_a_kurti.jpg?width=900',
+    image:
+      'https://commons.wikimedia.org/wiki/Special:FilePath/Indian_woman_wearing_a_kurti.jpg?width=900',
     badges: ['Daily Wear'],
     description: 'Breathable cotton kurti with side pockets and a clean straight fit.',
     isNew: false,
-    isBestSeller: true
+    isBestSeller: true,
   },
   {
     id: 3,
@@ -88,11 +115,12 @@ export const products: Product[] = [
     stock: 20,
     sizes: ['S', 'M', 'L', 'XL'],
     colors: ['Ivory', 'Peach', 'Mint'],
-    image: 'https://images.unsplash.com/photo-1502716119720-b23a93e5fe1b?auto=format&fit=crop&w=900&q=80',
+    image:
+      'https://images.unsplash.com/photo-1502716119720-b23a93e5fe1b?auto=format&fit=crop&w=900&q=80',
     badges: ['Comfort Fit'],
     description: 'Coordinated kurta, salwar, and dupatta set for workdays and family events.',
     isNew: true,
-    isBestSeller: false
+    isBestSeller: false,
   },
   {
     id: 4,
@@ -110,7 +138,7 @@ export const products: Product[] = [
     badges: ['Wedding Edit'],
     description: 'Statement lehenga with detailed embroidery, dupatta, and structured blouse.',
     isNew: true,
-    isBestSeller: false
+    isBestSeller: false,
   },
   {
     id: 5,
@@ -124,11 +152,12 @@ export const products: Product[] = [
     stock: 27,
     sizes: ['XS', 'S', 'M', 'L', 'XL'],
     colors: ['Coral', 'Black', 'Sage'],
-    image: 'https://images.unsplash.com/photo-1539008835657-9e8e9680c956?auto=format&fit=crop&w=900&q=80',
+    image:
+      'https://images.unsplash.com/photo-1539008835657-9e8e9680c956?auto=format&fit=crop&w=900&q=80',
     badges: ['New Arrival'],
     description: 'Flattering wrap dress with a soft waist tie and easy day-to-night styling.',
     isNew: true,
-    isBestSeller: true
+    isBestSeller: true,
   },
   {
     id: 6,
@@ -142,11 +171,12 @@ export const products: Product[] = [
     stock: 42,
     sizes: ['S', 'M', 'L', 'XL'],
     colors: ['White', 'Sky', 'Olive'],
-    image: 'https://images.unsplash.com/photo-1485968579580-b6d095142e6e?auto=format&fit=crop&w=900&q=80',
+    image:
+      'https://images.unsplash.com/photo-1485968579580-b6d095142e6e?auto=format&fit=crop&w=900&q=80',
     badges: ['Workwear'],
     description: 'Relaxed linen shirt with a crisp collar and breathable finish.',
     isNew: false,
-    isBestSeller: false
+    isBestSeller: false,
   },
   {
     id: 7,
@@ -160,11 +190,12 @@ export const products: Product[] = [
     stock: 30,
     sizes: ['26', '28', '30', '32', '34'],
     colors: ['Indigo', 'Black', 'Light Blue'],
-    image: 'https://images.unsplash.com/photo-1541099649105-f69ad21f3246?auto=format&fit=crop&w=900&q=80',
+    image:
+      'https://images.unsplash.com/photo-1541099649105-f69ad21f3246?auto=format&fit=crop&w=900&q=80',
     badges: ['Best Seller'],
     description: 'High rise jeans with a straight leg, soft stretch, and ankle-length finish.',
     isNew: false,
-    isBestSeller: true
+    isBestSeller: true,
   },
   {
     id: 8,
@@ -178,11 +209,12 @@ export const products: Product[] = [
     stock: 12,
     sizes: ['S', 'M', 'L'],
     colors: ['Emerald', 'Black', 'Champagne'],
-    image: 'https://images.unsplash.com/photo-1595777457583-95e059d581b8?auto=format&fit=crop&w=900&q=80',
+    image:
+      'https://images.unsplash.com/photo-1595777457583-95e059d581b8?auto=format&fit=crop&w=900&q=80',
     badges: ['Party Edit'],
     description: 'Fluid satin gown with a graceful neckline and subtle side slit.',
     isNew: true,
-    isBestSeller: true
+    isBestSeller: true,
   },
   {
     id: 9,
@@ -200,7 +232,7 @@ export const products: Product[] = [
     badges: ['4-Way Stretch'],
     description: 'High support leggings with stretch fabric, quick dry finish, and side pocket.',
     isNew: false,
-    isBestSeller: false
+    isBestSeller: false,
   },
   {
     id: 10,
@@ -214,11 +246,12 @@ export const products: Product[] = [
     stock: 39,
     sizes: ['S', 'M', 'L', 'XL'],
     colors: ['Lavender', 'Grey', 'Peach'],
-    image: 'https://images.unsplash.com/photo-1612336307429-8a898d10e223?auto=format&fit=crop&w=900&q=80',
+    image:
+      'https://images.unsplash.com/photo-1612336307429-8a898d10e223?auto=format&fit=crop&w=900&q=80',
     badges: ['Soft Touch'],
     description: 'Two-piece night suit in gentle fabric with a relaxed, sleep-friendly fit.',
     isNew: false,
-    isBestSeller: true
+    isBestSeller: true,
   },
   {
     id: 11,
@@ -232,11 +265,12 @@ export const products: Product[] = [
     stock: 25,
     sizes: ['One Size'],
     colors: ['Tan', 'Black', 'Cherry'],
-    image: 'https://images.unsplash.com/photo-1594223274512-ad4803739b7c?auto=format&fit=crop&w=900&q=80',
+    image:
+      'https://images.unsplash.com/photo-1594223274512-ad4803739b7c?auto=format&fit=crop&w=900&q=80',
     badges: ['Accessory'],
     description: 'Compact quilted handbag with chain strap and secure inner pocket.',
     isNew: true,
-    isBestSeller: false
+    isBestSeller: false,
   },
   {
     id: 12,
@@ -250,11 +284,12 @@ export const products: Product[] = [
     stock: 64,
     sizes: ['One Size'],
     colors: ['Blush', 'Navy', 'Cream'],
-    image: 'https://images.unsplash.com/photo-1520903920243-00d872a2d1c9?auto=format&fit=crop&w=900&q=80',
+    image:
+      'https://images.unsplash.com/photo-1520903920243-00d872a2d1c9?auto=format&fit=crop&w=900&q=80',
     badges: ['Gift Pick'],
     description: 'Light printed scarf that works with kurtis, dresses, and office layers.',
     isNew: false,
-    isBestSeller: false
+    isBestSeller: false,
   },
   {
     id: 13,
@@ -268,11 +303,13 @@ export const products: Product[] = [
     stock: 58,
     sizes: ['One Size'],
     colors: ['Pearl', 'Gold', 'Silver'],
-    image: 'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=900&q=80',
+    image:
+      'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=900&q=80',
     badges: ['Jewellery', 'Gift Pick'],
-    description: 'Elegant pearl drop earrings with a lightweight finish for daily and occasion wear.',
+    description:
+      'Elegant pearl drop earrings with a lightweight finish for daily and occasion wear.',
     isNew: true,
-    isBestSeller: true
+    isBestSeller: true,
   },
   {
     id: 14,
@@ -286,11 +323,13 @@ export const products: Product[] = [
     stock: 36,
     sizes: ['One Size'],
     colors: ['Gold', 'Rose Gold'],
-    image: 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=900&q=80',
+    image:
+      'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=900&q=80',
     badges: ['Layered Look'],
-    description: 'Polished layered necklace that adds a refined accent to dresses, shirts, and sarees.',
+    description:
+      'Polished layered necklace that adds a refined accent to dresses, shirts, and sarees.',
     isNew: true,
-    isBestSeller: false
+    isBestSeller: false,
   },
   {
     id: 15,
@@ -304,11 +343,12 @@ export const products: Product[] = [
     stock: 22,
     sizes: ['One Size'],
     colors: ['Tan', 'Black', 'Ivory'],
-    image: 'https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=900&q=80',
+    image:
+      'https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=900&q=80',
     badges: ['Work Bag'],
     description: 'Roomy structured tote with polished handles, zip closure, and everyday storage.',
     isNew: true,
-    isBestSeller: true
+    isBestSeller: true,
   },
   {
     id: 16,
@@ -322,11 +362,12 @@ export const products: Product[] = [
     stock: 31,
     sizes: ['One Size'],
     colors: ['Pink', 'Black', 'Beige'],
-    image: 'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=900&q=80',
+    image:
+      'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=900&q=80',
     badges: ['Party Carry'],
     description: 'Compact shoulder bag for evenings, brunch plans, and lightweight essentials.',
     isNew: false,
-    isBestSeller: false
+    isBestSeller: false,
   },
   {
     id: 17,
@@ -340,11 +381,12 @@ export const products: Product[] = [
     stock: 44,
     sizes: ['One Size'],
     colors: ['Blush', 'Emerald', 'Navy'],
-    image: 'https://images.unsplash.com/photo-1601924638867-3ec9d3a9e721?auto=format&fit=crop&w=900&q=80',
+    image:
+      'https://images.unsplash.com/photo-1520903920243-00d872a2d1c9?auto=format&fit=crop&w=900&q=80',
     badges: ['Silk Feel'],
     description: 'Smooth square scarf that can be styled around the neck, bag handle, or hair.',
     isNew: true,
-    isBestSeller: false
+    isBestSeller: false,
   },
   {
     id: 18,
@@ -358,11 +400,12 @@ export const products: Product[] = [
     stock: 70,
     sizes: ['One Size'],
     colors: ['Pearl', 'Gold'],
-    image: 'https://images.unsplash.com/photo-1573408301185-9146fe634ad0?auto=format&fit=crop&w=900&q=80',
+    image:
+      'https://images.unsplash.com/photo-1573408301185-9146fe634ad0?auto=format&fit=crop&w=900&q=80',
     badges: ['Accessory Set'],
     description: 'Set of pearl-accent hair clips to finish soft curls, buns, and festive styles.',
     isNew: false,
-    isBestSeller: true
+    isBestSeller: true,
   },
   {
     id: 19,
@@ -376,11 +419,12 @@ export const products: Product[] = [
     stock: 29,
     sizes: ['XS', 'S', 'M', 'L', 'XL'],
     colors: ['Champagne', 'Black', 'Wine'],
-    image: 'https://images.unsplash.com/photo-1586363104862-3a5e2ab60d99?auto=format&fit=crop&w=900&q=80',
+    image:
+      'https://images.unsplash.com/photo-1586363104862-3a5e2ab60d99?auto=format&fit=crop&w=900&q=80',
     badges: ['Easy Styling'],
     description: 'Flowy pleated midi skirt with a comfortable waist and polished movement.',
     isNew: true,
-    isBestSeller: false
+    isBestSeller: false,
   },
   {
     id: 20,
@@ -394,11 +438,12 @@ export const products: Product[] = [
     stock: 33,
     sizes: ['S', 'M', 'L', 'XL'],
     colors: ['Mid Blue', 'Dark Blue'],
-    image: 'https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=900&q=80',
+    image:
+      'https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=900&q=80',
     badges: ['Weekend Fit'],
     description: 'Button-front denim dress with a flattering belt and casual daywear finish.',
     isNew: false,
-    isBestSeller: true
+    isBestSeller: true,
   },
   {
     id: 21,
@@ -412,11 +457,12 @@ export const products: Product[] = [
     stock: 26,
     sizes: ['XS', 'S', 'M', 'L'],
     colors: ['Ivory', 'Pink', 'Sage'],
-    image: 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=900&q=80',
+    image:
+      'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=900&q=80',
     badges: ['Co-ord'],
     description: 'Fresh floral co-ord set with a tailored top and relaxed matching bottom.',
     isNew: true,
-    isBestSeller: false
+    isBestSeller: false,
   },
   {
     id: 22,
@@ -430,11 +476,13 @@ export const products: Product[] = [
     stock: 24,
     sizes: ['S', 'M', 'L', 'XL'],
     colors: ['Indigo', 'Rust', 'Cream'],
-    image: 'https://images.unsplash.com/photo-1583391733956-6c78276477e2?auto=format&fit=crop&w=900&q=80',
+    image:
+      'https://commons.wikimedia.org/wiki/Special:FilePath/Indian_woman_wearing_a_kurti.jpg?width=900',
     badges: ['Handloom'],
-    description: 'Handloom-inspired kurta and palazzo set with a soft dupatta for graceful comfort.',
+    description:
+      'Handloom-inspired kurta and palazzo set with a soft dupatta for graceful comfort.',
     isNew: true,
-    isBestSeller: false
+    isBestSeller: false,
   },
   {
     id: 23,
@@ -448,11 +496,12 @@ export const products: Product[] = [
     stock: 19,
     sizes: ['XS', 'S', 'M', 'L'],
     colors: ['Wine', 'Black', 'Emerald'],
-    image: 'https://images.unsplash.com/photo-1566174053879-31528523f8ae?auto=format&fit=crop&w=900&q=80',
+    image:
+      'https://images.unsplash.com/photo-1566174053879-31528523f8ae?auto=format&fit=crop&w=900&q=80',
     badges: ['Night Out'],
     description: 'Rich velvet party dress with a sleek fit and soft shine for evening plans.',
     isNew: false,
-    isBestSeller: true
+    isBestSeller: true,
   },
   {
     id: 24,
@@ -466,17 +515,140 @@ export const products: Product[] = [
     stock: 37,
     sizes: ['S', 'M', 'L', 'XL'],
     colors: ['Champagne', 'Lavender', 'Rose'],
-    image: 'https://images.unsplash.com/photo-1612336307429-8a898d10e223?auto=format&fit=crop&w=900&q=80',
+    image:
+      'https://images.unsplash.com/photo-1612336307429-8a898d10e223?auto=format&fit=crop&w=900&q=80',
     badges: ['Sleep Edit'],
     description: 'Smooth satin sleep set with a relaxed cut and elegant bedtime comfort.',
     isNew: true,
-    isBestSeller: false
-  }
+    isBestSeller: false,
+  },
+  {
+    id: 25,
+    name: 'Floral Maxi Dress',
+    category: 'Western Wear',
+    subCategory: 'Maxi Dresses',
+    price: 3699,
+    discountPrice: 2899,
+    rating: 4.7,
+    sold: 89,
+    stock: 28,
+    sizes: ['XS', 'S', 'M', 'L', 'XL'],
+    colors: ['Ivory', 'Rose', 'Sage'],
+    image:
+      'https://images.unsplash.com/photo-1539008835657-9e8e9680c956?auto=format&fit=crop&w=900&q=80',
+    badges: ['Dress Edit', 'New Arrival'],
+    description:
+      'Light floral maxi dress with an easy waist, soft movement, and brunch-ready finish.',
+    isNew: true,
+    isBestSeller: true,
+  },
+  {
+    id: 26,
+    name: 'Belted Shirt Dress',
+    category: 'Western Wear',
+    subCategory: 'Shirt Dresses',
+    price: 2999,
+    discountPrice: 2299,
+    rating: 4.5,
+    sold: 71,
+    stock: 32,
+    sizes: ['S', 'M', 'L', 'XL'],
+    colors: ['White', 'Khaki', 'Navy'],
+    image:
+      'https://images.unsplash.com/photo-1485968579580-b6d095142e6e?auto=format&fit=crop&w=900&q=80',
+    badges: ['Smart Casual'],
+    description: 'Polished shirt dress with a removable belt for office days and weekend plans.',
+    isNew: true,
+    isBestSeller: false,
+  },
+  {
+    id: 27,
+    name: 'Ruched Bodycon Dress',
+    category: 'Western Wear',
+    subCategory: 'Bodycon Dresses',
+    price: 3299,
+    discountPrice: 2599,
+    rating: 4.8,
+    sold: 118,
+    stock: 21,
+    sizes: ['XS', 'S', 'M', 'L'],
+    colors: ['Black', 'Wine', 'Chocolate'],
+    image:
+      'https://images.unsplash.com/photo-1566174053879-31528523f8ae?auto=format&fit=crop&w=900&q=80',
+    badges: ['Night Out', 'Best Seller'],
+    description:
+      'Sleek ruched bodycon dress with stretch comfort and a confident evening silhouette.',
+    isNew: false,
+    isBestSeller: true,
+  },
+  {
+    id: 28,
+    name: 'Cat Eye Sunglasses',
+    category: 'Accessories',
+    subCategory: 'Sunglasses',
+    price: 1499,
+    discountPrice: 999,
+    rating: 4.4,
+    sold: 136,
+    stock: 52,
+    sizes: ['One Size'],
+    colors: ['Black', 'Tortoise', 'Blush'],
+    image:
+      'https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&w=900&q=80',
+    badges: ['Accessory', 'UV Look'],
+    description: 'Sharp cat eye sunglasses that add a polished finish to dresses and casual edits.',
+    isNew: true,
+    isBestSeller: false,
+  },
+  {
+    id: 29,
+    name: 'Slim Waist Belt',
+    category: 'Accessories',
+    subCategory: 'Belts',
+    price: 1199,
+    discountPrice: 799,
+    rating: 4.3,
+    sold: 94,
+    stock: 48,
+    sizes: ['S', 'M', 'L'],
+    colors: ['Tan', 'Black', 'Ivory'],
+    image:
+      'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=900&q=80',
+    badges: ['Styling Essential'],
+    description: 'Slim waist belt for shaping dresses, long shirts, kurtis, and layered outfits.',
+    isNew: true,
+    isBestSeller: false,
+  },
+  {
+    id: 30,
+    name: 'Charm Bracelet Stack',
+    category: 'Accessories',
+    subCategory: 'Bracelets',
+    price: 1599,
+    discountPrice: 1099,
+    rating: 4.6,
+    sold: 121,
+    stock: 40,
+    sizes: ['One Size'],
+    colors: ['Gold', 'Silver', 'Rose Gold'],
+    image:
+      'https://images.unsplash.com/photo-1611591437281-460bfbe1220a?auto=format&fit=crop&w=900&q=80',
+    badges: ['Jewellery', 'Gift Pick'],
+    description: 'Layered charm bracelet stack with a lightweight feel for daily shine.',
+    isNew: false,
+    isBestSeller: true,
+  },
 ];
 
 export const recentOrders: RecentOrder[] = [
   { id: 'ORD-1028', customer: 'Priya Sharma', total: 7798, status: 'Shipped', date: '08 Jun 2026' },
   { id: 'ORD-1027', customer: 'Anika Mehta', total: 2399, status: 'Packed', date: '08 Jun 2026' },
-  { id: 'ORD-1026', customer: 'Sneha Patel', total: 5499, status: 'Delivered', date: '07 Jun 2026' },
-  { id: 'ORD-1025', customer: 'Riya Shah', total: 3648, status: 'Delivered', date: '07 Jun 2026' }
+  {
+    id: 'ORD-1026',
+    customer: 'Sneha Patel',
+    total: 5499,
+    status: 'Delivered',
+    date: '07 Jun 2026',
+  },
+  { id: 'ORD-1025', customer: 'Riya Shah', total: 3648, status: 'Delivered', date: '07 Jun 2026' },
 ];

@@ -31,6 +31,42 @@ export interface CartItem {
   quantity: number;
 }
 
+export interface ShippingAddress {
+  fullName: string;
+  phone: string;
+  email: string;
+  address: string;
+  city: string;
+  state: string;
+  pinCode: string;
+}
+
+export interface OrderItem {
+  productId: number;
+  name: string;
+  image: string;
+  size: string;
+  color: string;
+  quantity: number;
+  price: number;
+}
+
+export interface CustomerOrder {
+  id: string;
+  customer: string;
+  customerEmail: string;
+  items: OrderItem[];
+  shippingAddress: ShippingAddress;
+  paymentMethod: 'upi' | 'card' | 'cod';
+  subtotal: number;
+  deliveryFee: number;
+  couponDiscount: number;
+  total: number;
+  status: 'Packed' | 'Shipped' | 'Delivered';
+  date: string;
+  createdAt: number;
+}
+
 export interface RecentOrder {
   id: string;
   customer: string;

@@ -1,4 +1,4 @@
-import { Component, OnDestroy, inject } from '@angular/core';
+import { Component, OnDestroy, inject, signal } from '@angular/core';
 import { AbstractControl, FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { AdminAuthService } from '../../core/services/admin-auth.service';
@@ -7,7 +7,7 @@ import { AdminAuthService } from '../../core/services/admin-auth.service';
   selector: 'app-admin-sign-in',
   imports: [ReactiveFormsModule, RouterLink],
   templateUrl: './admin-sign-in.html',
-  styleUrl: './admin-sign-in.css'
+  styleUrl: './admin-sign-in.css',
 })
 export class AdminSignIn implements OnDestroy {
   private readonly fb = inject(FormBuilder);
@@ -18,14 +18,14 @@ export class AdminSignIn implements OnDestroy {
   readonly returnUrl = this.route.snapshot.queryParamMap.get('returnUrl') ?? '/admin/dashboard';
   readonly adminForm = this.fb.nonNullable.group({
     email: ['', [Validators.required, Validators.email, Validators.minLength(5)]],
-    password: ['', [Validators.required, Validators.minLength(6)]]
+    password: ['', [Validators.required, Validators.minLength(6)]],
   });
 
   submitted = false;
   message = '';
-  popupTitle = '';
-  popupMessage = '';
-  popupType: 'success' | 'error' = 'success';
+  popupTitle = signal('');
+  popupMessage = signal('');
+  popupType = signal<'success' | 'error'>('success');
 
   private popupTimer: ReturnType<typeof setTimeout> | null = null;
   private navigationTimer: ReturnType<typeof setTimeout> | null = null;
@@ -115,12 +115,17 @@ export class AdminSignIn implements OnDestroy {
 
   private showPopup(title: string, message: string, type: 'success' | 'error'): void {
     this.clearPopupTimer();
-    this.popupTitle = title;
-    this.popupMessage = message;
-    this.popupType = type;
-    this.popupTimer = setTimeout(() => {
-      this.popupMessage = '';
-    }, 2600);
+    this.popupTitle.set(title);
+    this.popupMessage.set(message);
+    this.popupType.set(type);
+    this.popupTimer = setTimeout(() => this.hidePopup(), 2600);
+  }
+
+  private hidePopup(): void {
+    this.clearPopupTimer();
+    this.popupTitle.set('');
+    this.popupMessage.set('');
+    this.popupType.set('success');
   }
 
   private clearPopupTimer(): void {

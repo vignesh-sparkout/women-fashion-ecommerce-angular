@@ -1,11 +1,11 @@
 <section class="auth-shell">
-  @if (popupMessage) {
+  @if (popupMessage()) {
     <div class="auth-popup-backdrop" aria-live="polite">
-      <div class="auth-popup" [class.error]="popupType === 'error'">
-        <span class="auth-popup-mark">{{ popupType === 'success' ? 'OK' : '!' }}</span>
+      <div class="auth-popup" [class.error]="popupType() === 'error'">
+        <span class="auth-popup-mark">{{ popupType() === 'success' ? 'OK' : '!' }}</span>
         <div>
-          <strong>{{ popupTitle }}</strong>
-          <p>{{ popupMessage }}</p>
+          <strong>{{ popupTitle() }}</strong>
+          <p>{{ popupMessage() }}</p>
         </div>
       </div>
     </div>

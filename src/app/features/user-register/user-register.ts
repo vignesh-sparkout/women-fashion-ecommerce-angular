@@ -1,4 +1,4 @@
-import { Component, OnDestroy, inject } from '@angular/core';
+import { Component, OnDestroy, inject, signal } from '@angular/core';
 import { AbstractControl, FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../core/services/auth.service';
@@ -7,7 +7,7 @@ import { AuthService } from '../../core/services/auth.service';
   selector: 'app-user-register',
   imports: [ReactiveFormsModule, RouterLink],
   templateUrl: './user-register.html',
-  styleUrl: './user-register.css'
+  styleUrl: './user-register.css',
 })
 export class UserRegister implements OnDestroy {
   private readonly fb = inject(FormBuilder);
@@ -20,14 +20,14 @@ export class UserRegister implements OnDestroy {
     fullName: ['', [Validators.required, Validators.minLength(2)]],
     email: ['', [Validators.required, Validators.email, Validators.minLength(5)]],
     password: ['', [Validators.required, Validators.minLength(6)]],
-    confirmPassword: ['', [Validators.required, Validators.minLength(6)]]
+    confirmPassword: ['', [Validators.required, Validators.minLength(6)]],
   });
 
   submitted = false;
   message = '';
-  popupTitle = '';
-  popupMessage = '';
-  popupType: 'success' | 'error' = 'success';
+  popupTitle = signal('');
+  popupMessage = signal('');
+  popupType = signal<'success' | 'error'>('success');
 
   private popupTimer: ReturnType<typeof setTimeout> | null = null;
   private navigationTimer: ReturnType<typeof setTimeout> | null = null;
@@ -38,7 +38,11 @@ export class UserRegister implements OnDestroy {
 
     if (this.registerForm.invalid || this.passwordsDoNotMatch()) {
       this.registerForm.markAllAsTouched();
-      this.showPopup('Check details', 'Please complete all fields correctly before creating an account.', 'error');
+      this.showPopup(
+        'Check details',
+        'Please complete all fields correctly before creating an account.',
+        'error',
+      );
       return;
     }
 
@@ -56,8 +60,8 @@ export class UserRegister implements OnDestroy {
       this.router.navigate(['/auth'], {
         queryParams: {
           registered: true,
-          returnUrl: this.returnUrl
-        }
+          returnUrl: this.returnUrl,
+        },
       });
     }, 900);
   }
@@ -72,7 +76,9 @@ export class UserRegister implements OnDestroy {
 
   passwordsDoNotMatch(): boolean {
     const value = this.registerForm.getRawValue();
-    return Boolean(value.password && value.confirmPassword && value.password !== value.confirmPassword);
+    return Boolean(
+      value.password && value.confirmPassword && value.password !== value.confirmPassword,
+    );
   }
 
   fullNameInvalid(): boolean {
@@ -182,12 +188,17 @@ export class UserRegister implements OnDestroy {
 
   private showPopup(title: string, message: string, type: 'success' | 'error'): void {
     this.clearPopupTimer();
-    this.popupTitle = title;
-    this.popupMessage = message;
-    this.popupType = type;
-    this.popupTimer = setTimeout(() => {
-      this.popupMessage = '';
-    }, 2600);
+    this.popupTitle.set(title);
+    this.popupMessage.set(message);
+    this.popupType.set(type);
+    this.popupTimer = setTimeout(() => this.hidePopup(), 2600);
+  }
+
+  private hidePopup(): void {
+    this.clearPopupTimer();
+    this.popupTitle.set('');
+    this.popupMessage.set('');
+    this.popupType.set('success');
   }
 
   private clearPopupTimer(): void {
