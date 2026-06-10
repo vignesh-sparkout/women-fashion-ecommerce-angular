@@ -22,21 +22,30 @@ interface ProductFilters {
   selector: 'app-products',
   imports: [CommonModule, RouterLink, ReactiveFormsModule],
   templateUrl: './products.html',
-  styleUrl: './products.css'
+  styleUrl: './products.css',
 })
 export class Products {
   readonly shop = inject(ShopService);
   private readonly fb = inject(FormBuilder);
   private readonly route = inject(ActivatedRoute);
 
-  readonly categories = ['All', ...new Set(this.shop.products.map((product) => product.category))];
-  readonly sizes = ['All', ...new Set(this.shop.products.flatMap((product) => product.sizes))];
-  readonly colors = ['All', ...new Set(this.shop.products.flatMap((product) => product.colors))];
+  readonly categories = computed(() => [
+    'All',
+    ...new Set(this.shop.products.map((product) => product.category)),
+  ]);
+  readonly sizes = computed(() => [
+    'All',
+    ...new Set(this.shop.products.flatMap((product) => product.sizes)),
+  ]);
+  readonly colors = computed(() => [
+    'All',
+    ...new Set(this.shop.products.flatMap((product) => product.colors)),
+  ]);
   readonly sortOptions: SortOption[] = [
     'Newest',
     'Price Low to High',
     'Price High to Low',
-    'Best Selling'
+    'Best Selling',
   ];
 
   readonly filters = this.fb.nonNullable.group({
@@ -45,21 +54,23 @@ export class Products {
     maxPrice: 10000,
     size: 'All',
     color: 'All',
-    sort: 'Newest' as SortOption
+    sort: 'Newest' as SortOption,
   });
 
   private readonly filterValues = toSignal(
     this.filters.valueChanges.pipe(
       map(() => this.filters.getRawValue()),
-      startWith(this.filters.getRawValue())
+      startWith(this.filters.getRawValue()),
     ),
-    { initialValue: this.filters.getRawValue() }
+    { initialValue: this.filters.getRawValue() },
   );
 
   readonly filteredProducts = computed(() => {
     const filters = this.filterValues();
     const search = filters.search.trim().toLowerCase();
-    let result = this.shop.products.filter((product) => this.matchesFilters(product, filters, search));
+    let result = this.shop.products.filter((product) =>
+      this.matchesFilters(product, filters, search),
+    );
 
     if (filters.sort === 'Price Low to High') {
       result = result.sort((a, b) => a.discountPrice - b.discountPrice);
@@ -87,7 +98,7 @@ export class Products {
       maxPrice: 10000,
       size: 'All',
       color: 'All',
-      sort: 'Newest'
+      sort: 'Newest',
     });
   }
 
@@ -95,11 +106,7 @@ export class Products {
     this.shop.toggleWishlist(productId);
   }
 
-  private matchesFilters(
-    product: Product,
-    filters: ProductFilters,
-    search: string
-  ): boolean {
+  private matchesFilters(product: Product, filters: ProductFilters, search: string): boolean {
     const matchesSearch =
       !search ||
       product.name.toLowerCase().includes(search) ||

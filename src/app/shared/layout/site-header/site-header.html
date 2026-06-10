@@ -1,28 +1,42 @@
-<header class="site-header">
-  <a routerLink="/" class="brand" aria-label="Velora home">
+<header class="site-header" [class.admin-header]="isAdminArea">
+  <a
+    [routerLink]="isAdminArea ? '/admin/dashboard' : '/'"
+    class="brand"
+    [attr.aria-label]="isAdminArea ? 'Velora admin dashboard' : 'Velora home'"
+  >
     <span class="brand-mark">V</span>
     <span>Velora</span>
   </a>
 
-  <nav class="primary-nav" aria-label="Primary navigation">
-    <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a>
-    <a routerLink="/categories" routerLinkActive="active">Categories</a>
-    <a routerLink="/products" routerLinkActive="active">Products</a>
+  @if (!isAdminArea) {
+    <nav class="primary-nav" aria-label="Primary navigation">
+      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+        Home
+      </a>
+      <a routerLink="/categories" routerLinkActive="active">Categories</a>
+      <a routerLink="/products" routerLinkActive="active">Products</a>
 
-    @if (adminAuth.isAdminSignedIn()) {
-      <a routerLink="/admin/dashboard" routerLinkActive="active">Admin</a>
-      <button type="button" class="nav-button" (click)="adminSignOut()">Log Out</button>
-    } @else if (auth.isSignedIn()) {
-      <a routerLink="/orders" routerLinkActive="active">Orders</a>
-      <a routerLink="/profile" routerLinkActive="active">Profile</a>
-      <button type="button" class="nav-button" (click)="userSignOut()">Log Out</button>
-    } @else {
-      <a routerLink="/auth" routerLinkActive="active">Sign In</a>
-      <a routerLink="/admin/dashboard" routerLinkActive="active">Admin</a>
-    }
-  </nav>
+      @if (adminAuth.isAdminSignedIn()) {
+        <a routerLink="/admin/dashboard" routerLinkActive="active">Admin</a>
+        <button type="button" class="nav-button" (click)="adminSignOut()">Log Out</button>
+      } @else if (auth.isSignedIn()) {
+        <a routerLink="/orders" routerLinkActive="active">Orders</a>
+        <a routerLink="/profile" routerLinkActive="active">Profile</a>
+        <button type="button" class="nav-button" (click)="userSignOut()">Log Out</button>
+      } @else {
+        <a routerLink="/auth" routerLinkActive="active">Sign In</a>
+        <a routerLink="/admin/dashboard" routerLinkActive="active">Admin</a>
+      }
+    </nav>
+  } @else {
+    <nav class="primary-nav admin-mode" aria-label="Admin account">
+      @if (adminAuth.isAdminSignedIn()) {
+        <button type="button" class="nav-button" (click)="adminSignOut()">Log Out</button>
+      }
+    </nav>
+  }
 
-  @if (auth.isSignedIn()) {
+  @if (auth.isSignedIn() && !isAdminArea) {
     <div class="header-actions">
       <a routerLink="/wishlist" class="icon-link" aria-label="Liked products">
         Liked

@@ -1,17 +1,20 @@
 <section class="page-title">
   <p class="eyebrow">Admin</p>
   <h1>Manage products</h1>
-  <p>Check product pricing, stock, category, and best seller status.</p>
+  <p>Edit product pricing, stock, category, rating, and selling status.</p>
 </section>
 
 <section class="section">
   <div class="table-card">
-    <table>
+    <table class="admin-product-table">
       <thead>
         <tr>
           <th>Product</th>
           <th>Category</th>
-          <th>Price</th>
+          <th>Sub-category</th>
+          <th>MRP</th>
+          <th>Sale</th>
+          <th>Rating</th>
           <th>Stock</th>
           <th>Sold</th>
         </tr>
@@ -19,11 +22,80 @@
       <tbody>
         @for (product of shop.products; track product.id) {
           <tr>
-            <td>{{ product.name }}</td>
-            <td>{{ product.category }}</td>
-            <td>{{ product.discountPrice | currency: 'INR' : 'symbol' : '1.0-0' }}</td>
-            <td>{{ product.stock }}</td>
-            <td>{{ product.sold }}</td>
+            <td class="product-cell">
+              <img [src]="product.image" [alt]="product.name" />
+              <label class="product-name-field">
+                <span>Product name</span>
+                <input
+                  type="text"
+                  [value]="product.name"
+                  (input)="updateText(product.id, 'name', $event)"
+                />
+              </label>
+            </td>
+            <td>
+              <select [value]="product.category" (change)="updateCategory(product.id, $event)">
+                @for (category of categoryOptions(); track category) {
+                  <option [value]="category">{{ category }}</option>
+                }
+              </select>
+            </td>
+            <td>
+              <select
+                [value]="product.subCategory"
+                (change)="updateText(product.id, 'subCategory', $event)"
+              >
+                @for (subCategory of subCategoryOptions(product.category); track subCategory) {
+                  <option [value]="subCategory">{{ subCategory }}</option>
+                }
+              </select>
+            </td>
+            <td>
+              <input
+                type="number"
+                min="0"
+                step="1"
+                [value]="product.price"
+                (input)="updateNumber(product.id, 'price', $event)"
+              />
+            </td>
+            <td>
+              <input
+                type="number"
+                min="0"
+                step="1"
+                [value]="product.discountPrice"
+                (input)="updateNumber(product.id, 'discountPrice', $event)"
+              />
+            </td>
+            <td>
+              <input
+                type="number"
+                min="0"
+                max="5"
+                step="0.1"
+                [value]="product.rating"
+                (input)="updateNumber(product.id, 'rating', $event)"
+              />
+            </td>
+            <td>
+              <input
+                type="number"
+                min="0"
+                step="1"
+                [value]="product.stock"
+                (input)="updateNumber(product.id, 'stock', $event)"
+              />
+            </td>
+            <td>
+              <input
+                type="number"
+                min="0"
+                step="1"
+                [value]="product.sold"
+                (input)="updateNumber(product.id, 'sold', $event)"
+              />
+            </td>
           </tr>
         }
       </tbody>

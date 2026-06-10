@@ -30,6 +30,10 @@ a {
   backdrop-filter: blur(18px);
 }
 
+.site-header.admin-header {
+  grid-template-columns: minmax(150px, auto) minmax(0, 1fr);
+}
+
 .brand,
 .primary-nav,
 .header-actions {
@@ -63,6 +67,10 @@ a {
   color: var(--muted);
   font-size: 0.95rem;
   font-weight: 700;
+}
+
+.primary-nav.admin-mode {
+  justify-self: end;
 }
 
 .primary-nav a,

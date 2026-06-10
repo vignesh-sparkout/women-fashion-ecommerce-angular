@@ -17,6 +17,10 @@ export class SiteHeader {
   readonly adminAuth = inject(AdminAuthService);
   readonly shop = inject(ShopService);
 
+  get isAdminArea(): boolean {
+    return this.router.url.startsWith('/admin');
+  }
+
   userSignOut(): void {
     this.auth.signOut();
     this.router.navigate(['/']);

@@ -6,7 +6,7 @@ import { AdminAuthService } from '../../core/services/admin-auth.service';
   selector: 'app-admin-panel',
   imports: [RouterOutlet, RouterLink, RouterLinkActive],
   templateUrl: './admin-panel.html',
-  styleUrl: './admin-panel.css'
+  styleUrl: './admin-panel.css',
 })
 export class AdminPanel {
   private readonly router = inject(Router);

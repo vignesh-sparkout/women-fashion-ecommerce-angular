@@ -1,19 +1,79 @@
-<section class="page-title">
+<section class="page-title category-title">
   <p class="eyebrow">Admin</p>
   <h1>Manage categories</h1>
-  <p>Review the storefront category groups and sub-categories.</p>
+  <p>Edit storefront category groups, images, descriptions, and sub-categories.</p>
 </section>
 
-<section class="section">
-  <div class="category-grid large">
-    @for (category of shop.categoryGroups; track category.name) {
-      <article class="form-section">
-        <h2>{{ category.name }}</h2>
-        <p>{{ category.description }}</p>
-        <div class="pill-list">
-          @for (child of category.children; track child) {
-            <span>{{ child }}</span>
-          }
+<section class="section category-editor-section">
+  <div class="category-form-grid">
+    @for (category of shop.categoryGroups; track $index; let categoryIndex = $index) {
+      <article class="category-form-card">
+        <header class="category-card-header">
+          <img [src]="category.image" [alt]="category.name" />
+          <div>
+            <p class="eyebrow">Category {{ categoryIndex + 1 }}</p>
+            <h2>{{ category.name }}</h2>
+            <span>{{ category.children.length }} sub-categories</span>
+          </div>
+        </header>
+
+        <div class="category-fields">
+          <label>
+            Category name
+            <input
+              type="text"
+              [value]="category.name"
+              (input)="updateCategoryName(categoryIndex, $event)"
+            />
+          </label>
+
+          <label>
+            Image URL
+            <input
+              type="url"
+              [value]="category.image"
+              (input)="updateCategoryImage(categoryIndex, $event)"
+            />
+          </label>
+
+          <label class="wide">
+            Description
+            <textarea
+              rows="3"
+              [value]="category.description"
+              (input)="updateCategoryDescription(categoryIndex, $event)"
+            ></textarea>
+          </label>
+        </div>
+
+        <div class="subcategory-panel">
+          <div class="subcategory-header">
+            <h3>Sub-categories</h3>
+            <button type="button" class="button secondary" (click)="addSubCategory(categoryIndex)">
+              Add
+            </button>
+          </div>
+
+          <div class="subcategory-list">
+            @for (child of category.children; track $index; let childIndex = $index) {
+              <div class="subcategory-row">
+                <input
+                  type="text"
+                  [value]="child"
+                  (input)="updateSubCategory(categoryIndex, childIndex, $event)"
+                />
+                <button
+                  type="button"
+                  class="button secondary remove-button"
+                  (click)="removeSubCategory(categoryIndex, childIndex)"
+                >
+                  Remove
+                </button>
+              </div>
+            } @empty {
+              <p class="empty-copy">No sub-categories.</p>
+            }
+          </div>
         </div>
       </article>
     }
